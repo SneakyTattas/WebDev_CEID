@@ -1,9 +1,5 @@
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-</head>
-<body>
 <?php
+include("index.html");
 $db_server["host"] = "localhost"; //database server
 $db_server["username"] = "root"; // DB username
 $db_server["password"] = ""; // DB password
@@ -22,12 +18,8 @@ $query = "SELECT IsAdmin
 
 $result = $mysql_con->query($query);
 $rowcnt = $result->num_rows;
-	if ($rowcnt == 0)
-	{ 
-	echo ( "<script type=\"text/javascript\"> alert('paketo')</script>") ; 
-	}
-	else 
-		{
+	if ($rowcnt == 0) {}
+	else {
 		session_start();
 		$_SESSION["username"] = $currentuser;
 		$_SESSION["password"] = $currentpassword;
@@ -48,5 +40,3 @@ $rowcnt = $result->num_rows;
 
 $mysql_con->close();
 ?>
-</body>
-</html>
