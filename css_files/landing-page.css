@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:300');
+
+body,html {
+    font-family: 'Ubunty',sans-serif;
+    height:100%;
+    margin: 0;
+}
+
+input{
+    font-family: 'Ubuntu',sans-serif;
+}
+
+body {
+    background: #FFFFFF url('../Pictures/landing-page_map.svg') no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+/*container for grid*/
+#home-container {
+    position: relative;
+    display:grid;
+    grid-template-columns: 1fr, 1fr, 1fr, 1fr;
+    grid-template-columns: 
+        ". left ."
+        ". right .";
+        height: 100%;
+}
+
+/* mobile diff*/
+@media screen and (min-width: 760px){
+    #home-container{
+        display: grid;
+        grid-template-columns: .5fr,1fr,1fr,.5fr;
+        grid-gap: 10px;
+        grid-template-areas: ". left right .";
+        height: 100%;
+    }
+}
+
+/* left position for tree + left text*/
+#logo {
+    grid-area:left;
+    align-self:center;
+    justify-self: center;
+}
+
+/* right position for bike + start button*/
+#illustration{
+    grid-area: right;
+    align-self: center;
+    justify-self: center;
+}
+
+/* css for tree - TODO doesnt work */ 
+#logo{
+    animation: fadeINcolor 2s ease-in-out forwards;
+}
+
+/* css for left text*/
+h2{
+    color: black;
+    text-decoration: none;
+}
+
+
+/*css for moving bike from right */
+#MovingBike{
+    padding: 20px 20px;
+    animation: fadeINright 2s ease-in-out forwards;
+}
+
+/* start button properties*/
+.start_button{
+    animation: fadeIN 2s ease-in-out 1s forwards;
+    opacity: 0;
+    display: inline-block;
+    padding: 30px 50px;
+    font-size: 35px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #FFFFFF;
+    background-color: #228B22;
+    border: none;
+    border-radius: 66px;
+    box-shadow: 0 9px black;
+    margin-top: 5em;
+}
+
+.start_button:hover {
+    background-color: #7CFC00;
+}
+
+.start_button:active {
+    background-color: burlywood;
+    box-shadow: 0 4px #666;
+    transform: translateY(4px);
+}
+
+.fallingLeaves {
+    text-align: center;
+}
+.fallingLeaves span {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+	margin: -280px 40px 54px  -34px;
+	background:url("../Pictures/leaf.png");
+    
+    -webkit-animation: fallingLeaves 10s infinite  linear;
+    -moz-animation: fallingLeaves 10s infinite  linear;
+}
+.fallingLeaves span:nth-child(5n+5) {
+
+    -webkit-animation-delay: 1.3s;
+    -moz-animation-delay: 1.3s;
+}
+.fallingLeaves span:nth-child(3n+2) {
+
+    -webkit-animation-delay: 1.5s;
+    -moz-animation-delay: 1.5s;
+}
+.fallingLeaves span:nth-child(2n+5) {
+
+    -webkit-animation-delay: 1.7s;
+    -moz-animation-delay: 1.7s;
+}
+
+.fallingLeaves span:nth-child(3n+10) {
+
+    -webkit-animation-delay: 2.7s;
+    -moz-animation-delay: 2.7s;
+}
+.fallingLeaves span:nth-child(7n+2) {
+
+    -webkit-animation-delay: 3.5s;
+    -moz-animation-delay: 3.5s;
+}
+.fallingLeaves span:nth-child(4n+5) {
+
+    -webkit-animation-delay: 5.5s;
+    -moz-animation-delay: 5.5s;
+}
+.fallingLeaves span:nth-child(3n+7) {
+
+    -webkit-animation-delay: 8s;
+    -moz-animation-delay: 8s;
+}
+@-webkit-keyframes fallingLeaves {
+  0% {
+    opacity: 1;
+
+	-webkit-transform: translate(0, 0px) rotateZ(0deg);
+  }
+  75% {
+    opacity: 1;
+
+	-webkit-transform: translate(100px, 600px) rotateZ(270deg); 
+  }
+  100% {
+    opacity: 0;
+
+	-webkit-transform: translate(150px, 800px) rotateZ(360deg);
+  }
+}
+@-moz-keyframes fallingLeaves {
+  0% {
+    opacity: 1;
+    
+	-webkit-transform: translate(0, 0px) rotateZ(0deg);
+  }
+  75% {
+    opacity: 1;
+   
+	-webkit-transform: translate(100px, 600px) rotateZ(270deg); 
+  }
+  100% {
+    opacity: 0;
+    
+	-webkit-transform: translate(150px, 800px) rotateZ(360deg);
+  }
+}
+
+
+
+/*animation for start button*/
+@keyframes fadeIN{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+/* animation for bike coming from right*/
+@keyframes fadeINright{
+
+    from{
+        opacity: 0;
+        transform: translateX(700px);
+    }
+    to{
+        opacity: 1;
+        transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeIncolor{
+      from{
+          color: black;
+      }
+      to{
+          color: green;
+      }
+  }

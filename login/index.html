@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Eco-friendly CEIDades</title> 
+        <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300">
+        <link rel="stylesheet" href="../css_files/login.css">
+        <link rel="shortcut icon" href="../Pictures/tree.ico">
+    </head>
+    <body>
+        <div class="home-container">
+            <div class="topnav">
+            <a href="./index.html"> <img src="../Pictures/tree.ico"></img> </a>
+                <div class="login-container">
+                <form action="/action_page.php">
+                    <input type="text" placeholder="Username" name="username">
+                    <input type="text" placeholder="Password" name="psw">
+                    <button type="submit">Login</button>
+                </form>
+                </div>
+            </div>
+            <div class="register">
+                <center>
+                <form action="/login.php" method="POST">
+                    <div class="box">
+                        <label class="form_label" for="username"><b>Username</b></label>
+                        <input class="form_input" id="username" type="text" placeholder="username" name="username" </input>
+                    </div>
+                    <div class="box">
+                        <label class="form_label" for="password"><b>Password</b></label>
+                        <input class="form_input" id="password" type="password" placeholder="password" name="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()].{8,}" minlength=8 </input>
+                    </div>
+                    <div class="box">
+                        <label class="form_label" for="email"><b>Email</b></label>
+                        <input class="form_input" id="email" type="text" placeholder="email" name="email"  required pattern="[^]+@[^]+[.][a-z]{2,63}$"  </input>
+                    </div>
+                        <input class="form_submit" type="submit" formaction="/password.php" value="Register">
+                </form>
+                </center>
+            </div>
+            <!-- <div id="ivern"><img src="../Pictures/ivern.jpg" alt="There should be a tree here"></div> -->
+            <div id="requirements"> 
+                <center>
+                    <h3>Password must contain the following:</h3>
+                    <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                    <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                    <p id="number" class="invalid">A <b>number</b></p>
+                    <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+                    <p id="specials" class="invalid">A <b>special character</b></p>
+                    <script src="./PassValidation.js"></script>
+                </center>
+            </div>
+            <div class="footer">
+                <div class="about"><a href="../about/index.html"> About </a></div>
+            </div>
+        </div>
+    </body>
+</html>
