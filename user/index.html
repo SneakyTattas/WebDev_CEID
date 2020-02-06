@@ -8,6 +8,9 @@
         <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300">
         <link rel="stylesheet" href="../css_files/user.css">
         <link rel="shortcut icon" href="../Pictures/tree.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="./lib/prettysize.js"></script>
+		<script src="./lib/oboe-browser.min.js"></script>
     </head>
     <body>
         <div class="topnav">
@@ -20,16 +23,24 @@
         </div>
 
         <div id="DataPresentation" class="tabcontent">
-            <h3>Data Presentation</h3>
-            <p> Edw tha vriskontai ta stoixeia tou xrhsth</p>
+		<script>
+		$("#DataPresentation").load("test.html");
+		</script>
         </div>
         <div id="Analysis" class="tabcontent">
             <h3>Analysis</h3>
             <p> EEdw tha vrisketai h analysh twn stoixeiwn tou</p>
         </div>
         <div id="DataUpload" class="tabcontent">
-            <h3>Data Presentation</h3>
-            <p> Edw tha vriskontai to parathyro gia to upload</p>
+		<script>
+			$("#DataUpload").load("./UploadMap.html");
+			$(".tablinks").on("click", function(){
+				map.invalidateSize();
+				});
+		</script>
         </div>
         <script src="./tab_switch.js"></script>
+		<script>
+		document.getElementById("default").click();
+		</script>
     </body>

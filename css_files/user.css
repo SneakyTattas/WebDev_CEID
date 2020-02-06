@@ -40,8 +40,8 @@ input{
   float: left;
   border: 1px solid #ccc;
   background-color: #f1f1f1;
-  width: 30%;
-  height: 300px;
+  width: 10%;
+  height: 100%;
 }
 
 .tab button {
@@ -66,12 +66,11 @@ input{
 }
 
 .tabcontent {
-  float: left;
-  padding: 0px 12px;
+  padding: 0px 5px;
   border: 1px solid #ccc;
-  width: 70%;
+  width: 100%;
   border-left: none;
-  height: 300px;
+  height: 100%;
 }
 
 .tabcontent {

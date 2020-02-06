@@ -1,0 +1,6 @@
+{
+    "require": {
+        "halaxa/json-machine": "^0.3.2",
+        "brick/db": "^0.1.2"
+    }
+}
