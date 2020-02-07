@@ -37,10 +37,13 @@
 
 			if (throwayayArray[4] != null){
 				JSON += '"accuracy": ' + throwayayArray[3] + ',';
-				JSON += '"activity": [' + throwayayArray[4] + "}";
+				JSON += '"type": "' + throwayayArray[4] +'",';
+				JSON += '"confidence": ' + throwayayArray[5] + "}";
 			}
 			else{
-			JSON += '"accuracy": ' + throwayayArray[3] + "}";
+				JSON += '"accuracy": ' + throwayayArray[3] + ',';
+				JSON += '"type": "' + "UNKNOWN" +'",';
+				JSON += '"confidence": ' + 0 + "}";
 			}
         }
 			JSON += "]}";
@@ -73,6 +76,10 @@
 				timestamp = location.timestampMs,
 				acc = location.accuracy,
 				activity = location.activity;
+				var maxvalue = 0;
+				var bestactivity = "";
+				var bestconfidence = 0;
+
 
 
 			// Handle negative latlngs due to google unsigned/signed integer bug.
@@ -82,10 +89,23 @@
 			var circle = 0.011438148719;
 							if (distancesquared < circle){
 								if (activity != undefined){
-									var stringactivity = JSON.stringify(activity);
-									stringactivity = stringactivity.substr(1);
-									latlngs.push([latitude,longitude,timestamp,acc,stringactivity]);
-									;}
+
+									for (i in activity) {
+											if(activity[i].activity[0].confidence > 50 && activity[i].activity[0].confidence > maxvalue && activity[i].activity[0].type != "TILTING") {
+												maxvalue = activity[i].activity[0].confidence;
+												bestconfidence = activity[i].activity[0].confidence;
+												bestactivity = activity[i].activity[0].type;
+												
+											}else  {
+												bestconfidence = activity[i].activity[0].confidence;
+												bestactivity = "UNKNOWN";
+											}
+											
+									}
+									maxvalue =0;
+									latlngs.push([latitude,longitude,timestamp,acc,bestactivity,bestconfidence]);
+
+									}
 
 									
 								else 
@@ -208,8 +228,10 @@
 	$( '#reset' ).click( function () {
 		status("Please wait for the file to fully upload")
 			var locationhistory;
+			var requestcounter = 0;
 			latlngsize = Math.floor(latlngs.length/10000);
 			const xhr2 = new XMLHttpRequest();
+			const xhr3 = new XMLHttpRequest();
 			xhr2.open("POST", "DeleteLocations.php");
 			xhr2.send();
 			xhr2.onreadystatechange = function()
@@ -224,20 +246,44 @@
 				xhr.open("POST", "testphp.php");
 				xhr.setRequestHeader("Content-Type", "application/json");
 				xhr.send(locationhistory);
+				xhr.onreadystatechange = function()
+				{
+					if (xhr.readyState == 4 && xhr.status == 200)
+					{
+						requestcounter++;
+						if (requestcounter == (k+1)){
+							CalculatePercentage();
+						}
+						console.log("hey", requestcounter);
+					}
+				}
 				callback();
 			};
 			function TestCallback(){
 				if (k<latlngsize)
 				{
+					
 					k++;
 					SendHistory(k, TestCallback);
+					status(parseInt(100*k/latlngsize), "% uploaded. Please wait...");
 				}
 				else return;
 
 			}
 
 		SendHistory(k, TestCallback);
-		status("File uploaded!")
+		console.log("heloo", k, requestcounter );
+			function CalculatePercentage(){
+			xhr3.open("POST", "percent.php")
+			xhr3.send();
+			xhr3.onreadystatechange = function()
+			{
+				if (xhr3.readyState == 4 && xhr3.status == 200)
+				{
+				status("File Uploaded!")
+				}	
 			}
+		}
+	}
 	}});
 

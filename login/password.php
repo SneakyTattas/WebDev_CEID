@@ -20,7 +20,7 @@ if (in_array($cipher, openssl_get_cipher_methods()))
     $original_plaintext = openssl_decrypt($ciphertext, $cipher, $key, $options=0, $iv);
 }
 
-$query = "INSERT INTO users VALUES('$currentuser', '$hashedpass', '$currentmail', 0, '$ciphertext')";
+$query = "INSERT INTO users VALUES ('$currentuser', '$hashedpass', '$currentmail', 0, '$ciphertext', 0, 0)";
 $result = $mysql_con->query($query);
 echo $mysql_con->error;
 $mysql_con->close();
@@ -28,5 +28,5 @@ $mysql_con->close();
 session_start();
 $_SESSION["username"] = $currentuser;
 $_SESSION["password"] = $hashedpass;
-header('Location: http://' . $_SERVER['HTTP_HOST'] . '/UserAccess.php');
+header('Location: http://' . $_SERVER['HTTP_HOST'] . '/../user/');
 ?>

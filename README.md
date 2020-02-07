@@ -6,3 +6,5 @@
 * WD02 Login Form, php backend
 * WD03 Login and register forms almost complete
 * WD04 Complete overhaul of front-end, added animations, needs some work
+* WD05 File upload done
+* WD06 activity added, data presentation almsot complete
