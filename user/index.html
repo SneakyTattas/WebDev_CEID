@@ -8,9 +8,13 @@
         <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300">
         <link rel="stylesheet" href="../css_files/user.css">
         <link rel="shortcut icon" href="../Pictures/tree.ico">
+        <link rel="stylesheet" href="./leaflet.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script src="./lib/prettysize.js"></script>
-		<script src="./lib/oboe-browser.min.js"></script>
+        <script src="./lib/prettysize.js"></script>
+        <script src="./leaflet.js"></script>
+        <script src="./lib/oboe-browser.min.js"></script>
+        <script src="./heatmap.js"></script>
+        <script src="./leaflet-heatmap.js"></script>
     </head>
     <body>
         <div class="topnav">
@@ -33,6 +37,7 @@
                     var yearsince;
                     var monthuntil;
                     var yearuntil;
+                    var data;
                 function showDate(monthsince,yearsince,monthuntil,yearuntil) {
                     if ((monthsince == "" && yearsince == "") || (monthuntil == "" && yearuntil == "")) {
                         document.getElementById("txtHint").innerHTML = "";
@@ -55,9 +60,10 @@
                         xmlhttp.onreadystatechange = function()
                         {
                             if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
-                            var response = xmlhttp.responseText;
-                            console.log(response);
-                            console.log(JSON.parse(response));
+                            var response = JSON.parse(xmlhttp.responseText);
+                            var setA = response.setA;
+                            data = response.data;
+                            on200();
                            // document.getElementById("test").innerHTML = response;
                         }
                     }
@@ -148,10 +154,59 @@
 
                 <br>
                 <div id="txtHint"><b>Person info will be listed here...</b></div>
-                <div id="test"> 
+                <div id="map1" style="height: 50%;">
                 </div>
-            <h3>Analysis</h3>
-            <p> EEdw tha vrisketai h analysh twn stoixeiwn tou</p>
+                <script>
+                     var baseLayer = L.tileLayer(
+                    'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+                      attribution: '...',
+                      maxZoom: 18,
+                      minZoom: 13
+                    }
+                  );
+                    var map1 = new L.Map('map1', {
+                    center: new L.LatLng(38.2466, 21.7345),
+                    zoom: 4,
+                    layers: [baseLayer]
+                  });
+                  var baseLayer = L.tileLayer(
+                    'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+                      attribution: '...',
+                      maxZoom: 18
+                    }
+                  );
+                     
+                  var cfg = {
+                    // radius should be small ONLY if scaleRadius is true (or small radius is intended)
+                    // if scaleRadius is false it will be the constant radius used in pixels
+                    "radius": 0.0013,
+                    "maxOpacity": .8,
+                    // scales the radius based on map zoom
+                    "scaleRadius": true,
+                    // if set to false the heatmap uses the global maximum for colorization
+                    // if activated: uses the data maximum within the current map boundaries
+                    //   (there will always be a red spot with useLocalExtremas true)
+                    "useLocalExtrema": true,
+                    // which field name in your data represents the latitude - default "lat"
+                    latField: 'long',
+                    // which field name in your data represents the longitude - default "lng"
+                    lngField: 'latit',
+                    // which field name in your data represents the data value - default "value"
+                    valueField: 'count'
+                  };
+                  var heatmapLayer = new HeatmapOverlay(cfg);
+                  map1.addLayer(heatmapLayer);
+                    
+                  function on200(){
+                     var testData = {
+                    max: 10000,
+                   // data: [{lat: 24.6408, lng:46.7728, count: 3},{lat: 50.75, lng:-1.55, count: 1}]
+                    data
+                  };
+                  console.log(testData);
+                  heatmapLayer.setData(testData);}
+                  
+                  </script>
         </div>
         <div id="DataUpload" class="tabcontent">
 		<script>
