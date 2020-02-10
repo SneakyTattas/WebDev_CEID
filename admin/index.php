@@ -27,14 +27,14 @@ if ($_SESSION["isAdmin"] == false){
 	</div>
 	<script>
 	$("#dbstate").on("click", function(){
-		$("#container").fadeOut(0);
-		$("#container").load("./adminTabs/dbstate.html");
-		$("#container").fadeIn(1000);
+		$("#tabcontent").fadeOut(0);
+		$("#tabcontent").load("./adminTabs/dbstate.html");
+		$("#tabcontent").fadeIn(1000);
 
 	});
 	$("#map").on("click", function(){
-		$("#container").fadeOut(0);
-		$("#container").load("./adminTabs/map.html");
+		$("#tabcontent").fadeOut(0);
+		$("#tabcontent").load("./adminTabs/map.html");
 		$("#container").fadeIn(1000);
 	});
 	$("#deleteData").on("click", function(){

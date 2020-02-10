@@ -3,11 +3,8 @@ var yearsince;
 var monthuntil;
 var yearuntil;
 var data;
+var response;
 function showDate(monthsince,yearsince,monthuntil,yearuntil) {
-if ((monthsince == "" && yearsince == "") || (monthuntil == "" && yearuntil == "")) {
-    document.getElementById("txtHint").innerHTML = "";
-    return;
-} else {
     if (window.XMLHttpRequest) {
         // code for IE7+, Firefox, Chrome, Opera, Safari
         xmlhttp = new XMLHttpRequest();
@@ -25,17 +22,15 @@ if ((monthsince == "" && yearsince == "") || (monthuntil == "" && yearuntil == "
     xmlhttp.onreadystatechange = function()
     {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
-        var response = JSON.parse(xmlhttp.responseText);
+        response = JSON.parse(xmlhttp.responseText);
         console.log(response);
-        console.log(response.setA);
-        console.log(response.setB[0]);
-        console.log(response.setC[0]);
+
+
         data = response.data;
         on200();
         //document.getElementById("test").innerHTML = response;
     }
 }
-    }
 }
 function getForms()
 {
@@ -43,32 +38,20 @@ monthsince = document.getElementById("monthsince").value;
 yearsince = document.getElementById("yearsince").value;
 monthuntil = document.getElementById("monthuntil").value;
 yearuntil = document.getElementById("yearuntil").value;
-if(!yearsince && !yearuntil)
-            {
-                document.getElementById("Submit").disabled = true;
-            }
-            else
-            {document.getElementById("Submit").disabled = false;
-            }
+showDate(monthsince, yearsince, monthuntil, yearuntil);
 }
 var baseLayer = L.tileLayer(
-'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
- attribution: '...',
- maxZoom: 16,
- minZoom: 13
-}
-);
-var map1 = new L.Map('map1', {
-center: new L.LatLng(38.2466, 21.7345),
-zoom: 4,
-layers: [baseLayer]
-});
-var baseLayer = L.tileLayer(
-'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
- attribution: '...',
- maxZoom: 18
-}
-);
+    'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+        attribution: '...',
+        maxZoom: 16,
+        minZoom: 13
+    }
+    );
+    var map1 = new L.Map('map1', {
+    center: new L.LatLng(38.2466, 21.7345),
+    zoom: 4,
+    layers: [baseLayer]
+    });
 
 var cfg = {
 // radius should be small ONLY if scaleRadius is true (or small radius is intended)
@@ -99,3 +82,113 @@ data
 };
 console.log(testData);
 heatmapLayer.setData(testData);}
+
+function getTable(){
+    var tablediv = document.getElementById("test");
+    switch (document.getElementById("tableSelect").value){
+    default: 
+        tablediv.innerHTML = "" ;
+    break;
+    case "1":
+        var tablediv = document.getElementById("test");
+        tablediv.innerHTML ="";
+        var table = document.createElement("table");
+        table.setAttribute("class", "myTable");
+        var tr = document.createElement("tr");
+        tr.setAttribute("class", "trAnalysis");
+        table.appendChild(tr);
+        var th = document.createElement("th");
+        th.setAttribute("class", "thAnalysis");
+        th.appendChild(document.createTextNode("Type"));
+        var th2 = document.createElement("th");
+        th2.setAttribute("class", "thAnalysis");
+        th2.appendChild(document.createTextNode("Counter"));
+        tr.appendChild(th);
+        tr.appendChild(th2);
+        for (var i in response.setA){
+            tablediv.appendChild(table);
+        var row = table.insertRow((parseInt(i))+1);
+        row.setAttribute("class", "trAnalysis");
+        var cell1 = row.insertCell(0);
+        cell1.setAttribute("class", "tdAnalysis");
+        var cell2 = row.insertCell(1);
+        cell2.setAttribute("class", "tdAnalysis");
+        cell1.innerHTML = response.setA[i].type;
+        cell2.innerHTML = response.setA[i].counter;
+        }
+        tablediv.innerHTML += "</table>";
+    break;
+    case "2":
+        var tablediv = document.getElementById("test");
+        tablediv.innerHTML ="";
+        var table = document.createElement("table");
+        table.setAttribute("class", "myTable");
+        var tr = document.createElement("tr");
+        tr.setAttribute("class", "trAnalysis");
+        table.appendChild(tr);
+        var th = document.createElement("th");
+        th.setAttribute("class", "thAnalysis");
+        th.appendChild(document.createTextNode("Type"));
+        var th2 = document.createElement("th");
+        th2.setAttribute("class", "thAnalysis");
+        th2.appendChild(document.createTextNode("Peak Hour"));
+        var th3 = document.createElement("th");
+        th3.setAttribute("class", "thAnalysis");
+        th3.appendChild(document.createTextNode("Amount"));
+        tr.appendChild(th);
+        tr.appendChild(th2);
+        tr.appendChild(th3);
+        for (var i in response.setA){
+            tablediv.appendChild(table);
+        var row = table.insertRow((parseInt(i))+1);
+        row.setAttribute("class", "trAnalysis");
+        var cell1 = row.insertCell(0);
+        cell1.setAttribute("class", "tdAnalysis");
+        var cell2 = row.insertCell(1);
+        cell2.setAttribute("class", "tdAnalysis");
+        var cell3 = row.insertCell(2);
+        cell3.setAttribute("class", "tdAnalysis");
+        cell1.innerHTML = response.setB[i].type;
+        cell2.innerHTML = response.setB[i].peakhour;
+        cell3.innerHTML = response.setB[i].amount;
+        }
+        tablediv.innerHTML += "</table>";
+    break;
+    case "3":
+        var tablediv = document.getElementById("test");
+        tablediv.innerHTML ="";
+        var table = document.createElement("table");
+        table.setAttribute("class", "myTable");
+        var tr = document.createElement("tr");
+        tr.setAttribute("class", "trAnalysis");
+        table.appendChild(tr);
+        var th = document.createElement("th");
+        th.setAttribute("class", "thAnalysis");
+        th.appendChild(document.createTextNode("Type"));
+        var th2 = document.createElement("th");
+        th2.setAttribute("class", "thAnalysis");
+        th2.appendChild(document.createTextNode("Peak Day"));
+        var th3 = document.createElement("th");
+        th3.setAttribute("class", "thAnalysis");
+        th3.appendChild(document.createTextNode("Amount"));
+        tr.appendChild(th);
+        tr.appendChild(th2);
+        tr.appendChild(th3);
+        for (var i in response.setA){
+            tablediv.appendChild(table);
+        var row = table.insertRow((parseInt(i))+1);
+        row.setAttribute("class", "trAnalysis");
+        var cell1 = row.insertCell(0);
+        cell1.setAttribute("class", "tdAnalysis");
+        var cell2 = row.insertCell(1);
+        cell2.setAttribute("class", "tdAnalysis");
+        var cell3 = row.insertCell(2);
+        cell3.setAttribute("class", "tdAnalysis");
+        cell1.innerHTML = response.setC[i].type;
+        cell2.innerHTML = response.setC[i].peakday;
+        cell3.innerHTML = response.setC[i].amount;
+        }
+        tablediv.innerHTML += "</table>";
+    break;
+    }
+}

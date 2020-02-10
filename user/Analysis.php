@@ -5,29 +5,33 @@ session_start();
 $username = $_SESSION["username"];
 $timestamp = 0;
 $timestamp2 = 0;
-
 require("../login/DBhandler.php");
 $monthsince = intval($_GET['monthsince']);
 $yearsince = intval($_GET['yearsince']);
 $monthuntil = intval($_GET['monthuntil']);
 $yearuntil = intval($_GET['yearuntil']);
+
 if(!$monthsince)
 {
-    $timestamp = strtotime("$yearsince/01/01");
-}
-else 
-{
-    $timestamp = strtotime("$yearsince/$monthsince/01");
+    $monthsince = "01";
 }
 if(!$monthuntil)
 {
-    $timestamp2 = strtotime("$yearuntil/12/31");
+    $monthuntil = "12";
+
 }
-else 
+if(!$yearsince)
 {
-    $timestamp2 = strtotime("$yearuntil/$monthuntil/31");
+    $yearsince = "2015";
+
+}
+if(!$yearuntil)
+{
+    $yearuntil = "2025";
 }
 
+$timestamp = strtotime("$yearsince/$monthsince/01");
+$timestamp2 = strtotime("$yearuntil/$monthuntil/31");
 
 $sql="SELECT timestamp, longitudeE7, latitudeE7, accuracy, type FROM locations WHERE username = '$username' AND timestamp BETWEEN ($timestamp*1000) AND ($timestamp2*1000) ORDER BY timestamp ";
 $result = $mysql_con->query($sql);
@@ -46,50 +50,55 @@ $resultCrowcnt = mysqli_num_rows($resultC);
 $A = 0;
 $B = 0;
 $C = 0;
+
 echo '{"setA": [';
 echo "\n";
     while($row = mysqli_fetch_array($resultA)) {
         if ($A != ($resultArowcnt-1)){
-        echo '{"'.$row['type'].'":'.$row['counter']."},";$A++;}
+            echo '{"type":"' . $row['type'] . '",';
+            echo '"counter":'.$row['counter']."},";
+             $A++;
+            }
         else{
-            echo '{"'.$row['type'].'":'.$row['counter']."}";}
+            echo  '{"type":"' . $row['type'] . '",';
+            echo  '"counter":'.$row['counter']."}";}
         }
     
 echo "],";
 echo "\n";
-echo '"setB":[{';
+echo '"setB":[';
 echo "\n";
     while($row = mysqli_fetch_array($resultB)) {
         if ($B != ($resultBrowcnt-1)){
-            echo '"'.$B.'":[{"type":"'.$row['type'].'",';
+            echo '{"type":"'.$row['type'].'",';
             echo '"peakhour":'.$row['PeakHour'].",";
-            echo '"amount":'.$row['amount']."}],";
+            echo '"amount":'.$row['amount']."},";
             $B++;
         }
         else {
-            echo '"'.$B.'":[{"type":"'.$row['type'].'",';
-                echo '"peakhour":'.$row['PeakHour'].",";
-                echo '"amount":'.$row['amount']."}]";
+            echo '{"type":"'.$row['type'].'",';
+            echo '"peakhour":'.$row['PeakHour'].",";
+            echo '"amount":'.$row['amount']."}";
         }
     }
-    echo "}],";
+    echo "],";
     echo "\n";
-echo '"setC":[{';
+echo '"setC":[';
 echo "\n";
     while($row = mysqli_fetch_array($resultC)) {
         if ($C != ($resultCrowcnt-1)){
-            echo '"'.$C.'":[{"type":"'.$row['type'].'",';
+            echo '{"type":"'.$row['type'].'",';
             echo '"peakday":"'.$row['PeakDay'].'",';
-            echo '"amount":'.$row['amount']."}],";
+            echo '"amount":'.$row['amount']."},";
             $C++;
         }
         else{
-            echo '"'.$C.'":[{"type":"'.$row['type'].'",';
-                echo '"peakday":"'.$row['PeakDay'].'",';
-                echo '"amount":'.$row['amount']."}]";
+            echo '{"type":"'.$row['type'].'",';
+            echo '"peakday":"'.$row['PeakDay'].'",';
+            echo '"amount":'.$row['amount']."}";
         }
     }
-    echo "}],";
+    echo "],";
     echo "\n";
     echo '"data":[';
     echo "\n";
