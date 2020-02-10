@@ -1,0 +1,87 @@
+<html>
+<head>
+<link rel="stylesheet" href="./leaflet.css">
+<script src="./leaflet.js"></script>
+</head>
+<form>
+  <select
+    name="monthsince"
+    id="monthsince"
+    onchange="getForms()"
+    action="showDate(monthsince,yearsince,monthuntil,yearuntil)"
+  >
+    <option value="">Διάλεξε μήνα: </option>
+    <option value="01">Ιανουάριος</option>
+    <option value="02">Φεβρουάριος</option>
+    <option value="03">Μάρτιος</option>
+    <option value="04">Απρίλιος</option>
+    <option value="05">Μάιος</option>
+    <option value="06">Ιούνιος</option>
+    <option value="07">Ιούλιος</option>
+    <option value="08">Αύγουστος</option>
+    <option value="09">Σεπτέμβριος</option>
+    <option value="10">Οκτώβριος</option>
+    <option value="11">Νοέμβριος</option>
+    <option value="12">Δεκέμβριος</option>
+  </select>
+  <select name="yearsince" id="yearsince" onchange="getForms()">
+    <option value="">Διάλεξε έτος: </option>
+    <option value="2015">2015</option>
+    <option value="2016">2016</option>
+    <option value="2017">2017</option>
+    <option value="2018">2018</option>
+    <option value="2019">2019</option>
+    <option value="2020">2020</option>
+    <option value="2021">2021</option>
+    <option value="2022">2022</option>
+    <option value="2023">2023</option>
+    <option value="2024">2024</option>
+    <option value="2025">2025</option>
+  </select>
+  <select name="monthuntil" id="monthuntil" onchange="getForms()">
+    <option value="">Διάλεξε μήνα: </option>
+    <option value="01">Ιανουάριος</option>
+    <option value="02">Φεβρουάριος</option>
+    <option value="03">Μάρτιος</option>
+    <option value="04">Απρίλιος</option>
+    <option value="05">Μάιος</option>
+    <option value="06">Ιούνιος</option>
+    <option value="07">Ιούλιος</option>
+    <option value="08">Αύγουστος</option>
+    <option value="09">Σεπτέμβριος</option>
+    <option value="10">Οκτώβριος</option>
+    <option value="11">Νοέμβριος</option>
+    <option value="12">Δεκέμβριος</option>
+  </select>
+    <select name="yearuntil" id="yearuntil" onchange="getForms()">
+      <option value="">Διάλεξε έτος: </option>
+      <option value="2015">2015</option>
+      <option value="2016">2016</option>
+      <option value="2017">2017</option>
+      <option value="2018">2018</option>
+      <option value="2019">2019</option>
+      <option value="2020">2020</option>
+      <option value="2021">2021</option>
+      <option value="2022">2022</option>
+      <option value="2023">2023</option>
+      <option value="2024">2024</option>
+      <option value="2025">2025</option>
+    </select>
+</form>
+<button
+name="button"
+id="Submit"
+type="button"
+onclick="showDate(monthsince,yearsince,monthuntil,yearuntil)"
+>
+Submit
+</button>
+<div class="grid-container">
+	<div id="map1" class="map">
+	</div>
+
+</div>
+</div>
+<script src="./useranalysis.js"></script>
+</body>
+</html>

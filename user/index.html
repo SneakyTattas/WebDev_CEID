@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-	<head>
+<head>
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,209 +15,39 @@
         <script src="./lib/oboe-browser.min.js"></script>
         <script src="./heatmap.js"></script>
         <script src="./leaflet-heatmap.js"></script>
-    </head>
-    <body>
-        <div class="topnav">
-            <a href="./index.html"> <img src="../Pictures/tree.ico"></img> </a>
-        </div>
-        <div class="tab">
-            <button class="tablinks" onclick="openAction(event, 'DataPresentation')" id="default">Data Presentation</button>
-            <button class="tablinks" onclick="openAction(event, 'Analysis')">Analysis</button>
-            <button class="tablinks" onclick="openAction(event, 'DataUpload')">Data Upload</button>
-        </div>
+</head>
 
-        <div id="DataPresentation" class="tabcontent">
-		<script>
-		$("#DataPresentation").load("DataPreza.php");
-		</script>
-        </div>
-        <div id="Analysis" class="tabcontent">
-            <script>
-                    var monthsince;
-                    var yearsince;
-                    var monthuntil;
-                    var yearuntil;
-                    var data;
-                function showDate(monthsince,yearsince,monthuntil,yearuntil) {
-                    if ((monthsince == "" && yearsince == "") || (monthuntil == "" && yearuntil == "")) {
-                        document.getElementById("txtHint").innerHTML = "";
-                        return;
-                    } else {
-                        if (window.XMLHttpRequest) {
-                            // code for IE7+, Firefox, Chrome, Opera, Safari
-                            xmlhttp = new XMLHttpRequest();
-                        } else {
-                            // code for IE6, IE5
-                            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                        }
-                        xmlhttp.onreadystatechange = function() {
-                            if (this.readyState == 4 && this.status == 200) {
-                                document.getElementById("txtHint").innerHTML = this.responseText;
-                            }
-                        };
-                        xmlhttp.open("GET","Analysis.php?monthsince="+monthsince+"&yearsince="+yearsince+"&monthuntil="+monthuntil+"&yearuntil="+yearuntil,true);
-                        xmlhttp.send();
-                        xmlhttp.onreadystatechange = function()
-                        {
-                            if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
-                            var response = JSON.parse(xmlhttp.responseText);
-                            console.log(response);
-                            console.log(response.setA);
-                            console.log(response.setB[0]);
-                            console.log(response.setC[0]);
-                            data = response.data;
-                            on200();
-                            //document.getElementById("test").innerHTML = response;
-                        }
-                    }
-                        }
-                }
-                function getForms()
-                {
-                    monthsince = document.getElementById("monthsince").value;
-                    yearsince = document.getElementById("yearsince").value;
-                    monthuntil = document.getElementById("monthuntil").value;
-                    yearuntil = document.getElementById("yearuntil").value;
-                    if(!yearsince && !yearuntil)
-                                {
-                                    document.getElementById("Submit").disabled = true;
-                                }
-                                else
-                                {document.getElementById("Submit").disabled = false;
-                                }
-                }
-                </script>
-                
-                  <form>
-                <select name="monthsince" id="monthsince" onchange="getForms()" action="showDate(monthsince,yearsince,monthuntil,yearuntil)">
-                  <option value="">Διάλεξε μήνα:</option>
-                  <option value="01">Ιανουάριος</option>
-                  <option value="02">Φεβρουάριος</option>
-                  <option value="03">Μάρτιος</option>
-                  <option value="04">Απρίλιος</option>
-                  <option value="05">Μάιος</option>
-                  <option value="06">Ιούνιος</option>
-                  <option value="07">Ιούλιος</option>
-                  <option value="08">Αύγουστος</option>
-                  <option value="09">Σεπτέμβριος</option>
-                  <option value="10">Οκτώβριος</option>
-                  <option value="11">Νοέμβριος</option>
-                  <option value="12">Δεκέμβριος</option>
-                  </select>
-                    <select name="yearsince" id="yearsince" onchange="getForms()">
-                      <option value="">Διάλεξε έτος:</option>
-                      <option value="2015">2015</option>
-                      <option value="2016">2016</option>
-                      <option value="2017">2017</option>
-                      <option value="2018">2018</option>
-                      <option value="2019">2019</option>
-                      <option value="2020">2020</option>
-                      <option value="2021">2021</option>
-                      <option value="2022">2022</option>
-                      <option value="2023">2023</option>
-                      <option value="2024">2024</option>
-                      <option value="2025">2025</option>
-                      </select>
-                        <select name="monthuntil" id="monthuntil" onchange="getForms()">
-                          <option value="">Διάλεξε μήνα:</option>
-                          <option value="01">Ιανουάριος</option>
-                          <option value="02">Φεβρουάριος</option>
-                          <option value="03">Μάρτιος</option>
-                          <option value="04">Απρίλιος</option>
-                          <option value="05">Μάιος</option>
-                          <option value="06">Ιούνιος</option>
-                          <option value="07">Ιούλιος</option>
-                          <option value="08">Αύγουστος</option>
-                          <option value="09">Σεπτέμβριος</option>
-                          <option value="10">Οκτώβριος</option>
-                          <option value="11">Νοέμβριος</option>
-                          <option value="12">Δεκέμβριος</option>
-                          </select>
-                            <form>
-                            <select name="yearuntil" id="yearuntil" onchange="getForms()">
-                              <option value="">Διάλεξε έτος:</option>
-                              <option value="2015">2015</option>
-                              <option value="2016">2016</option>
-                              <option value="2017">2017</option>
-                              <option value="2018">2018</option>
-                              <option value="2019">2019</option>
-                              <option value="2020">2020</option>
-                              <option value="2021">2021</option>
-                              <option value="2022">2022</option>
-                              <option value="2023">2023</option>
-                              <option value="2024">2024</option>
-                              <option value="2025">2025</option>
-                              </select>
-                              <button name="button" id="Submit" type="button" onclick="showDate(monthsince,yearsince,monthuntil,yearuntil)">Submit</button></form>
-                            
-                            
-
-                <br>
-                <div id="txtHint"><b>Person info will be listed here...</b></div>
-                <div class="grid-container"><div id="map1" class="map"></div>
-                </div>
-                <script>
-                     var baseLayer = L.tileLayer(
-                    'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
-                      attribution: '...',
-                      maxZoom: 16,
-                      minZoom: 13
-                    }
-                  );
-                    var map1 = new L.Map('map1', {
-                    center: new L.LatLng(38.2466, 21.7345),
-                    zoom: 4,
-                    layers: [baseLayer]
-                  });
-                  var baseLayer = L.tileLayer(
-                    'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
-                      attribution: '...',
-                      maxZoom: 18
-                    }
-                  );
-                     
-                  var cfg = {
-                    // radius should be small ONLY if scaleRadius is true (or small radius is intended)
-                    // if scaleRadius is false it will be the constant radius used in pixels
-                    "radius": 0.0013,
-                    "maxOpacity": .8,
-                    // scales the radius based on map zoom
-                    "scaleRadius": true,
-                    // if set to false the heatmap uses the global maximum for colorization
-                    // if activated: uses the data maximum within the current map boundaries
-                    //   (there will always be a red spot with useLocalExtremas true)
-                    "useLocalExtrema": true,
-                    // which field name in your data represents the latitude - default "lat"
-                    latField: 'long',
-                    // which field name in your data represents the longitude - default "lng"
-                    lngField: 'latit',
-                    // which field name in your data represents the data value - default "value"
-                    valueField: 'count'
-                  };
-                  var heatmapLayer = new HeatmapOverlay(cfg);
-                  map1.addLayer(heatmapLayer);
-                    
-                  function on200(){
-                     var testData = {
-                    max: data.length,
-                   // data: [{lat: 24.6408, lng:46.7728, count: 3},{lat: 50.75, lng:-1.55, count: 1}]
-                    data
-                  };
-                  console.log(testData);
-                  heatmapLayer.setData(testData);}
-                  
-                  </script>
-        </div>
-        <div id="DataUpload" class="tabcontent">
-		<script>
-			$("#DataUpload").load("./UploadMap.html");
-			$(".tablinks").on("click", function(){
-				map.invalidateSize();
+<body>
+    <div class="topnav">
+      <a href="./index.html"> <img src="../Pictures/tree.ico"></img> </a>
+      <a class="tablinks" onclick="openAction(event, 'DataPresentation')" id="default">Data Presentation</a>
+      <a class="tablinks" onclick="openAction(event, 'Analysis')">Analysis</a>
+      <a class="tablinks" onclick="openAction(event, 'DataUpload')">Data Upload</a>
+    </div>
+    <div id="DataPresentation" class="tabcontent">
+	    <script>
+		  $("#DataPresentation").load("DataPreza.php");
+		  </script>
+    </div>
+    <div id="Analysis" class="tabcontent">
+        <script>
+        $("#Analysis").load("userAnalysis.html");
+        $("#Analysis").on("click", function(){
+        map1.invalidateSize();
 				});
-		</script>
-        </div>
-        <script src="./tab_switch.js"></script>
-		<script>
-		document.getElementById("default").click();
-		</script>
-    </body>
+        </script>
+    </div>
+    <div id="DataUpload" class="tabcontent">
+		  <script>
+			$("#DataUpload").load("./UploadMap.html");
+			$("#DataUpload").on("click", function(){
+        map.invalidateSize();
+				});
+		  </script>
+    </div>
+      <script src="./useranalysis.js"></script>
+      <script src="./tab_switch.js"></script>
+		  <script>
+		  document.getElementById("default").click();
+      </script>
+</body>
