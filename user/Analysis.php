@@ -33,7 +33,7 @@ $sql="SELECT timestamp, longitudeE7, latitudeE7, accuracy, type FROM locations W
 $result = $mysql_con->query($sql);
 $queryA = "SELECT type,count(*) as counter FROM locations WHERE username = '$username' AND timestamp BETWEEN ($timestamp*1000) AND ($timestamp2*1000) GROUP BY type";
 $queryB = "SELECT PeakHour, type, amount FROM (SELECT count(*) as amount,HOUR(FROM_UNIXTIME(timestamp/1000)) AS PeakHour,type FROM locations WHERE username = '$username' AND timestamp BETWEEN ($timestamp*1000) AND ($timestamp2*1000) group by PeakHour, type order by count(*) desc, type) as x group by type";
-$queryC = "SELECT PeakDay, type, amount FROM (SELECT count(*) as amount,DAYOFWEEK(FROM_UNIXTIME(timestamp/1000)) AS PeakDay,type FROM locations WHERE username = '$username' AND timestamp BETWEEN ($timestamp*1000) AND ($timestamp2*1000) group by PeakDay, type order by count(*) desc, type) as x group by type";
+$queryC = "SELECT PeakDay, type, amount FROM (SELECT count(*) as amount,DAYNAME(FROM_UNIXTIME(timestamp/1000)) AS PeakDay,type FROM locations WHERE username = '$username' AND timestamp BETWEEN ($timestamp*1000) AND ($timestamp2*1000) group by PeakDay, type order by count(*) desc, type) as x group by type";
 $queryD = "SELECT longitudeE7, latitudeE7, count(*) FROM locations WHERE username = '$username' AND timestamp BETWEEN ($timestamp*1000) AND ($timestamp2*1000) GROUP BY longitudeE7,latitudeE7";
 $resultD = $mysql_con->query($queryD);
 if (!$mysql_con->query($queryB)){ echo "ta pame";}
@@ -79,13 +79,13 @@ echo "\n";
     while($row = mysqli_fetch_array($resultC)) {
         if ($C != ($resultCrowcnt-1)){
             echo '"'.$C.'":[{"type":"'.$row['type'].'",';
-            echo '"peakday":'.$row['PeakDay'].",";
+            echo '"peakday":"'.$row['PeakDay'].'",';
             echo '"amount":'.$row['amount']."}],";
             $C++;
         }
         else{
             echo '"'.$C.'":[{"type":"'.$row['type'].'",';
-                echo '"peakday":'.$row['PeakDay'].",";
+                echo '"peakday":"'.$row['PeakDay'].'",';
                 echo '"amount":'.$row['amount']."}]";
         }
     }

@@ -76,6 +76,17 @@ input{
 .tabcontent {
   animation: fadeEffect 1s; /* Fading effect takes 1 second */
 }
+.map {
+  height: 100%;
+  grid-area: map;
+}
+
+.grid-container{
+  height: 70%;
+  display:grid;
+  grid-template-areas: '. .'
+                       'map map';
+}
 
 /* Go from zero to full opacity */
 @keyframes fadeEffect {
