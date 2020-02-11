@@ -84,14 +84,14 @@ console.log(testData);
 heatmapLayer.setData(testData);}
 
 function getTable(){
-    var tablediv = document.getElementById("test");
+    var tabledivA = document.getElementById("resultTableA");
     switch (document.getElementById("tableSelect").value){
     default: 
-        tablediv.innerHTML = "" ;
+        tabledivA.innerHTML = "" ;
     break;
     case "1":
-        var tablediv = document.getElementById("test");
-        tablediv.innerHTML ="";
+        var tabledivA = document.getElementById("resultTableA");
+        tabledivA.innerHTML ="";
         var table = document.createElement("table");
         table.setAttribute("class", "myTable");
         var tr = document.createElement("tr");
@@ -106,7 +106,7 @@ function getTable(){
         tr.appendChild(th);
         tr.appendChild(th2);
         for (var i in response.setA){
-            tablediv.appendChild(table);
+            tabledivA.appendChild(table);
         var row = table.insertRow((parseInt(i))+1);
         row.setAttribute("class", "trAnalysis");
         var cell1 = row.insertCell(0);
@@ -116,11 +116,11 @@ function getTable(){
         cell1.innerHTML = response.setA[i].type;
         cell2.innerHTML = response.setA[i].counter;
         }
-        tablediv.innerHTML += "</table>";
+        tabledivA.innerHTML += "</table>";
     break;
     case "2":
-        var tablediv = document.getElementById("test");
-        tablediv.innerHTML ="";
+        var tabledivB = document.getElementById("resultTableB");
+        tabledivB.innerHTML ="";
         var table = document.createElement("table");
         table.setAttribute("class", "myTable");
         var tr = document.createElement("tr");
@@ -139,7 +139,7 @@ function getTable(){
         tr.appendChild(th2);
         tr.appendChild(th3);
         for (var i in response.setA){
-            tablediv.appendChild(table);
+            tabledivB.appendChild(table);
         var row = table.insertRow((parseInt(i))+1);
         row.setAttribute("class", "trAnalysis");
         var cell1 = row.insertCell(0);
@@ -152,11 +152,11 @@ function getTable(){
         cell2.innerHTML = response.setB[i].peakhour;
         cell3.innerHTML = response.setB[i].amount;
         }
-        tablediv.innerHTML += "</table>";
+        tabledivB.innerHTML += "</table>";
     break;
     case "3":
-        var tablediv = document.getElementById("test");
-        tablediv.innerHTML ="";
+        var tabledivC = document.getElementById("resultTableC");
+        tabledivC.innerHTML ="";
         var table = document.createElement("table");
         table.setAttribute("class", "myTable");
         var tr = document.createElement("tr");
@@ -175,7 +175,7 @@ function getTable(){
         tr.appendChild(th2);
         tr.appendChild(th3);
         for (var i in response.setA){
-            tablediv.appendChild(table);
+            tabledivC.appendChild(table);
         var row = table.insertRow((parseInt(i))+1);
         row.setAttribute("class", "trAnalysis");
         var cell1 = row.insertCell(0);
@@ -188,7 +188,7 @@ function getTable(){
         cell2.innerHTML = response.setC[i].peakday;
         cell3.innerHTML = response.setC[i].amount;
         }
-        tablediv.innerHTML += "</table>";
+        tabledivC.innerHTML += "</table>";
     break;
     }
 }

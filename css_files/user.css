@@ -69,9 +69,19 @@ input{
   height: 89.7%;
 }
 
-.resultTable{
-  height: 41%;
-  min-height: 159px;
+.resultTableA{
+  align-self: center;
+  grid-area: left;
+}
+
+.resultTableB{
+  align-self: center;
+  grid-area: center;
+}
+
+.resultTableC{
+  align-self:center;
+  grid-area: right;
 }
 
 #map1 {
@@ -80,6 +90,14 @@ input{
 
 .grid-container{
   height: 95%;
+}
+
+.grid{
+  height: 41%;
+  min-height: 159px;
+  display: grid;
+  grid-template-areas: "left center right";
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 /* Table Style for analysis*/
