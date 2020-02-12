@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.css" integrity="sha256-IvM9nJf/b5l2RoebiFno92E5ONttVyaEEsdemDC6iQA=" crossorigin="anonymous" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js" integrity="sha256-nZaxPHA2uAaquixjSDX19TmIlbRNCOrf5HO1oHl5p70=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js" integrity="sha256-8zyeSXm+yTvzUN1VgAOinFgaVFEFTyYzWShOy9w7WoQ=" crossorigin="anonymous"></script>
+
+    </head>
+    <body>
+        <div id="placeholder">
+            <h1 id = "placeholder1"> <Center> Click the button below to get an overview of your stats (this might take a while)</Center> </h1>
+            <div><center><button type="button" id="PresButton" class="uploadButton" onclick="callme()"> Click me </button></center></div></div>
+        <div class="grid-pres" id="something">
+            <div class="top">
+                <script src="./datapres.js"></script>
+                <canvas id="dikomas" class="chartjs" width="468" height="234" style="display: block; width: 468px; height: 234px;"></canvas>
+            </div>
+            <div class="leaderboard" id="LDiv"></div>
+            <div class="bottom1" id="Stats1">
+
+            </div>
+            <div class="bottom2" id="Stats2">
+                
+            </div>
+            <div class="bottom3" id="Stats3"></div>
+        </div>
+    </body>
+</html>

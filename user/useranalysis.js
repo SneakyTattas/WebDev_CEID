@@ -77,19 +77,14 @@ map1.addLayer(heatmapLayer);
 function on200(){
 var testData = {
 max: data.length,
-// data: [{lat: 24.6408, lng:46.7728, count: 3},{lat: 50.75, lng:-1.55, count: 1}]
 data
 };
-console.log(testData);
-heatmapLayer.setData(testData);}
+heatmapLayer.setData(testData);
+getTable();}
 
 function getTable(){
-    var tabledivA = document.getElementById("resultTableA");
-    switch (document.getElementById("tableSelect").value){
-    default: 
+    var tabledivA = document.getElementById("resultTableA"); 
         tabledivA.innerHTML = "" ;
-    break;
-    case "1":
         var tabledivA = document.getElementById("resultTableA");
         tabledivA.innerHTML ="";
         var table = document.createElement("table");
@@ -117,8 +112,6 @@ function getTable(){
         cell2.innerHTML = response.setA[i].counter;
         }
         tabledivA.innerHTML += "</table>";
-    break;
-    case "2":
         var tabledivB = document.getElementById("resultTableB");
         tabledivB.innerHTML ="";
         var table = document.createElement("table");
@@ -153,8 +146,6 @@ function getTable(){
         cell3.innerHTML = response.setB[i].amount;
         }
         tabledivB.innerHTML += "</table>";
-    break;
-    case "3":
         var tabledivC = document.getElementById("resultTableC");
         tabledivC.innerHTML ="";
         var table = document.createElement("table");
@@ -189,6 +180,5 @@ function getTable(){
         cell3.innerHTML = response.setC[i].amount;
         }
         tabledivC.innerHTML += "</table>";
-    break;
-    }
 }
+getForms();

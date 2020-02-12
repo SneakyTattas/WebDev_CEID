@@ -265,7 +265,6 @@
 					
 					k++;
 					SendHistory(k, TestCallback);
-					status(parseInt(100*k/latlngsize), "% uploaded. Please wait...");
 				}
 				else return;
 

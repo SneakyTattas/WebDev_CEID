@@ -4,14 +4,16 @@
 <script src="./leaflet.js"></script>
 </head>
 <div class="container">
+  <div style="text-align:center">
 	<form>
+    Please choose time period (Default: All) <div id="mobile"><h1>         </h1></div>
   <select
     name="monthsince"
     id="monthsince"
     onchange="getForms()"
     action="showDate(monthsince1,yearsince1,monthuntil1,yearuntil1)"
   >
-    <option value="">Διάλεξε μήνα: </option>
+    <option value="">Since (Month) </option>
     <option value="01">Ιανουάριος</option>
     <option value="02">Φεβρουάριος</option>
     <option value="03">Μάρτιος</option>
@@ -26,7 +28,7 @@
     <option value="12">Δεκέμβριος</option>
   </select>
   <select name="yearsince" id="yearsince" onchange="getForms()">
-    <option value="">Διάλεξε έτος: </option>
+    <option value="">Since (Year) </option>
     <option value="2015">2015</option>
     <option value="2016">2016</option>
     <option value="2017">2017</option>
@@ -40,7 +42,7 @@
     <option value="2025">2025</option>
   </select>
   <select name="monthuntil" id="monthuntil" onchange="getForms()">
-    <option value="">Διάλεξε μήνα: </option>
+    <option value="">Until (Month) </option>
     <option value="01">Ιανουάριος</option>
     <option value="02">Φεβρουάριος</option>
     <option value="03">Μάρτιος</option>
@@ -55,7 +57,7 @@
     <option value="12">Δεκέμβριος</option>
   </select>
     <select name="yearuntil" id="yearuntil" onchange="getForms()">
-      <option value="">Διάλεξε έτος: </option>
+      <option value="">Until (Year) </option>
       <option value="2015">2015</option>
       <option value="2016">2016</option>
       <option value="2017">2017</option>
@@ -69,13 +71,14 @@
       <option value="2025">2025</option>
 				</select>
 
-				<select name="tableSelect" id="tableSelect" onchange="getTable()">
+	<!--			<select name="tableSelect" id="tableSelect" onchange="getTable()">
 					<option value="">Διάλεξε ερώτημα: </option>
 								<option value="1">ποσοστό εγγραφών ανά είδος δραστηριότητας</option>
 								<option value="2">καλύτερη ώρα της μέρας ανά είδος δραστηριότητας</option>
 								<option value="3">καλύτερη μέρα της βδομάδας ανά είδος δραστηριότητας</option>
-				</select>
+				</select> -->
 </form>
+</div>
 </div>
 <div class="grid-container">
   <div class="grid">
@@ -84,7 +87,6 @@
   <div class="resultTableC" id="resultTableC"></div>
 </div>
   <div id="map1"></div>
-  <div class="topnav" style="height:5%;"> </div>
 </div>
 <script src="./useranalysis.js"></script>
 </body>
