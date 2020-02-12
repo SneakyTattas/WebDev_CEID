@@ -9,7 +9,13 @@ $k = 0;
 $thisMonthEcoScore = 'SELECT ( select count(*) from locations where (username="'.$userid.'") AND (year(from_unixtime(timestamp/1000)) = year(current_date)) AND (month(from_unixtime(timestamp/1000)) = month(current_date)) AND (type="ON_FOOT" OR type="RUNNING" OR type="WALKING" OR type="ON_BICYCLE")) as econetries, ( select count(*) from locations where (username="'.$userid.'") AND (year(from_unixtime(timestamp/1000)) = year(current_date)) AND (month(from_unixtime(timestamp/1000)) = month(current_date)) AND type!="UNKNOWN") as entries';
 $thisMonthEcoResult = $mysql_con->query($thisMonthEcoScore);
 $thisMonthEcoArray = mysqli_fetch_all($thisMonthEcoResult);
-$thisMonthEcoPercentage = 100 * ($thisMonthEcoArray[0][0]/$thisMonthEcoArray[0][1]);
+if ($thisMonthEcoArray[0][1] == 0){
+    $thisMonthEcoPercentage = 0;
+}
+else{
+    $thisMonthEcoPercentage = 100 * ($thisMonthEcoArray[0][0]/$thisMonthEcoArray[0][1]);
+}
+
 $jsonObject = '{"data":[';
 
 for ($j = 0; $j<12; $j++){

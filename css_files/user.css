@@ -229,61 +229,92 @@ th.thAnalysis:last-child {
   border-right:none;
 }
 
-@media screen and (max-width: 550px) { 
+.leaderboard{
+  display: contents;
+  grid-area: leaderboard;
+}
+
+.gri-pres {
+  height: 89.7%;
+  width: 100%;
+  position: absolute;
+}
+
+@media screen and (max-width: 599px) { 
     #computer{
       display: none;
     }
+    body{
+      display:block;
+    }
+    
     .grid{
       display:inline;
     }
+    #placeholder{
+      display: block;
+    }
+    .gri-pres{
+      position: absolute;
+      display:block;
+    }
+    #LDiv{
+      justify-content: center;
+    }
+    #mobileForm{
+      display:inline-block;
+    }
+    #mobileButton {
+      display:contents;
+    }
 } 
-@media screen and (min-width: 550px){
+@media screen and (min-width: 600px){
   #mobile{
     display:none;
+  }
+  .gri-pres{
+    display:grid;
+    grid-template-areas: "top top leaderboard"
+                         "bottom1 bottom2 bottom3";
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+
+  }
+  .top {
+    grid-area: top;
+  }
+  .leaderboard{
+    display: contents;
+    grid-area: leaderboard;
+  }
+  .bottom1{
+    justify-self: center;
+    align-self: center;
+    text-align: top;
+    grid-area:bottom1;
+  }
+  
+  .bottom2 {
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+    grid-area:bottom2;
+  }
+  
+  .bottom3{
+  justify-self: center;
+  align-self: center;
+  text-align: center;
+  grid-area:bottom3;
   }
 }
 form{
   padding: 10px;
 }
 
-.grid-pres {
-  height: 89.7%;
-  width: 100%;
-  position: absolute;
-  display: none;
-  grid-template-areas: "top top leaderboard"
-                       "bottom1 bottom2 bottom3";
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: 1fr 1fr 1fr;
-}
 
-.top {
-  grid-area: top;
-}
-.leaderboard{
-  display: contents;
-  grid-area: leaderboard;
-}
-.bottom1{
-  justify-self: center;
-  align-self: center;
-  text-align: top;
-  grid-area:bottom1;
-}
 
-.bottom2 {
-  justify-self: center;
-  align-self: center;
-  text-align: center;
-  grid-area:bottom2;
-}
 
-.bottom3{
-justify-self: center;
-align-self: center;
-text-align: center;
-grid-area:bottom3;
-}
 
 h2 {
   font-size: 50px;

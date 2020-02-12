@@ -28,13 +28,14 @@
       <a href="../php_files/logout.php" class="tablinks" style="float:right; margin-top: 50px;">Logout</a>
       </div>
       <div id="mobile" style="text-align: center;">
-      <form> <select id="mobileForm" onchange='openAction(event,document.getElementById("mobileForm").value)'>
+      <form style="display:inline-block;"> <select id="mobileForm"  onchange='openAction(event,document.getElementById("mobileForm").value)'>
         <option name=""disabled selected hidden>Choose Tab</option>
         <option name="DataPresentation" id="mobileDP">DataPresentation</option>
         <option name="'Analysis'" id="mobileAn">Analysis</option>
         <option name="'DataUpload'" id="mobileDU">DataUpload</option>
       </select>
     </form>
+    <a href="../php_files/logout.php" class="tablinks" style="float:right; margin-top: 50px;" id="mobileButton">Logout</a>
       </div>
 
     </div>

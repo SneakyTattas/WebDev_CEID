@@ -227,62 +227,24 @@
 	}
 	$( '#reset' ).click( function () {
 		status("Please wait for the file to fully upload")
-			var locationhistory;
-			var requestcounter = 0;
-			latlngsize = Math.floor(latlngs.length/10000);
 			const xhr2 = new XMLHttpRequest();
 			const xhr3 = new XMLHttpRequest();
 			xhr2.open("POST", "DeleteLocations.php");
 			xhr2.send();
 			xhr2.onreadystatechange = function()
-			{
+		{
 			if (xhr2.readyState == 4 && xhr2.status == 200)
-			{
-			const xhr = new XMLHttpRequest();
-			var k = 0;		
-			function SendHistory(k, callback){
-				locationhistory = getJSON(latlngs.slice(k*10000, 10000+k*10000));
-				const xhr = new XMLHttpRequest();
-				xhr.open("POST", "testphp.php");
-				xhr.setRequestHeader("Content-Type", "application/json");
-				xhr.send(locationhistory);
-				xhr.onreadystatechange = function()
 				{
-					if (xhr.readyState == 4 && xhr.status == 200)
+				const xhr = new XMLHttpRequest();
+				locationhistory = getJSON(latlngs);
+				const xhr3 = new XMLHttpRequest();
+				xhr3.open("POST", "testphp.php");
+				xhr3.setRequestHeader("Content-Type", "application/json");
+				xhr3.send(locationhistory);
+				xhr3.onreadystatechange = function()
 					{
-						requestcounter++;
-						if (requestcounter == (k+1)){
-							CalculatePercentage();
-						}
-						console.log("hey", requestcounter);
+					if (xhr3.readyState == 4 && xhr3.status == 200){ status("File uploaded! Please refresh page for data presentation"); }
 					}
 				}
-				callback();
-			};
-			function TestCallback(){
-				if (k<latlngsize)
-				{
-					
-					k++;
-					SendHistory(k, TestCallback);
-				}
-				else return;
-
-			}
-
-		SendHistory(k, TestCallback);
-		console.log("heloo", k, requestcounter );
-			function CalculatePercentage(){
-			xhr3.open("POST", "percent.php")
-			xhr3.send();
-			xhr3.onreadystatechange = function()
-			{
-				if (xhr3.readyState == 4 && xhr3.status == 200)
-				{
-				status("File Uploaded!")
-				}	
-			}
 		}
-	}
-	}});
-
+});

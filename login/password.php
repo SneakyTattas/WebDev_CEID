@@ -28,5 +28,6 @@ $mysql_con->close();
 session_start();
 $_SESSION["username"] = $currentuser;
 $_SESSION["password"] = $hashedpass;
+$_SESSION["isAdmin"] = 0;
 header('Location: http://' . $_SERVER['HTTP_HOST'] . '/../user/');
 ?>
