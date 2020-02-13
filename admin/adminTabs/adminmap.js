@@ -16,7 +16,7 @@ fetchtypes("GET", "./adminTabs/adminmap.php?queryTypes=gettypes", function (err,
     options = document.getElementById("types");
     response = JSON.parse(dataresponse)
     for(var i in response.types){
-        options.innerHTML += '<option value="' + response.types[i] + '">' + response.types[i] + '</option>';
+        options.innerHTML += '<option selected value="' + response.types[i] + '">' + response.types[i] + '</option>';
     }
 });
 

@@ -8,7 +8,7 @@ require_once("../../php_files/DBhandler.php");
 
 $queryTypes = "SELECT type FROM locations GROUP BY type";
 $resultTypes =$mysql_con->query($queryTypes);
-if($_GET['queryTypes'] == 'gettypes'){
+if($resultTypes){
     $qType = '{"types": [';
     while ($row = mysqli_fetch_array($resultTypes))
     {
@@ -17,12 +17,6 @@ if($_GET['queryTypes'] == 'gettypes'){
 $qType = rtrim($qType, ",");
 $qType .= ' ]}';
 echo $qType;
-}
-
-
-
-
-
-
+}else $qtype = "";
 ?>
 

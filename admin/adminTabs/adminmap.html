@@ -40,17 +40,17 @@
   </select>
   <select name="yearsince" id="yearsince">
     <option value="">Since (Year) </option>
-    <option value="2015">2015</option>
-    <option value="2016">2016</option>
-    <option value="2017">2017</option>
-    <option value="2018">2018</option>
-    <option value="2019">2019</option>
-    <option value="2020">2020</option>
-    <option value="2021">2021</option>
-    <option value="2022">2022</option>
-    <option value="2023">2023</option>
-    <option value="2024">2024</option>
-    <option value="2025">2025</option>
+    <option value="2010">2010</option>
+    <option value="2011">2016</option>
+    <option value="2012">2017</option>
+    <option value="2013">2018</option>
+    <option value="2014">2019</option>
+    <option value="2015">2020</option>
+    <option value="2016">2021</option>
+    <option value="2017">2022</option>
+    <option value="2018">2023</option>
+    <option value="2019">2024</option>
+    <option value="2020">2025</option>
   </select>
     <select name="yearuntil" id="yearuntil" >
       <option value="">Until (Year) </option>
@@ -68,23 +68,23 @@
     </select>
     <select name="daysince" id="daysince">
         <option value="">Since (Day) </option>
-        <option value="01">Monday</option>
-        <option value="02">Tuesday</option>
-        <option value="03">Wednesday</option>
-        <option value="04">Thursday</option>
-        <option value="05">Friday</option>
-        <option value="06">Saturday</option>
-        <option value="07">Sunday</option>
+        <option value="02">Monday</option>
+        <option value="03">Tuesday</option>
+        <option value="04">Wednesday</option>
+        <option value="05">Thursday</option>
+        <option value="06">Friday</option>
+        <option value="07">Saturday</option>
+        <option value="01">Sunday</option>
       </select>
       <select name="dayuntil" id="dayuntil" >
         <option value="">Until (Day) </option>
-        <option value="01">Monday</option>
-        <option value="02">Tuesday</option>
-        <option value="03">Wednesday</option>
-        <option value="04">Thursday</option>
-        <option value="05">Friday</option>
-        <option value="06">Saturday</option>
-        <option value="07">Sunday</option>
+        <option value="02">Monday</option>
+        <option value="03">Tuesday</option>
+        <option value="04">Wednesday</option>
+        <option value="05">Thursday</option>
+        <option value="06">Friday</option>
+        <option value="07">Saturday</option>
+        <option value="01">Sunday</option>
       </select>
       <select name="hoursince" id="hoursince" >
         <option value="">Since (Hour) </option>
@@ -170,7 +170,7 @@
     });
     var cfg = {
  
-        "radius": 5,
+        "radius": 0.0013,
       "maxOpacity": .8,
       "scaleRadius": true,
       "useLocalExtrema": true,
@@ -200,7 +200,7 @@ map1.addLayer(heatmapLayer);
       console.log(data)
     var testData = {
     max: data.length,
-    data: data1
+    data: data
     
     
     

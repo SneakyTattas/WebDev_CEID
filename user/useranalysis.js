@@ -56,7 +56,7 @@ var baseLayer = L.tileLayer(
 var cfg = {
 // radius should be small ONLY if scaleRadius is true (or small radius is intended)
 // if scaleRadius is false it will be the constant radius used in pixels
-"radius": 0.0013,
+"radius": 4,
 "maxOpacity": .8,
 // scales the radius based on map zoom
 "scaleRadius": true,
