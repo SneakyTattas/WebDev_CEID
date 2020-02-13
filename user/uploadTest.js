@@ -32,7 +32,7 @@
 			var throwayayArray = arrayID[i];
             JSON += ',{';
 			JSON += '"timestampMs": "' + throwayayArray[2] + '",'; 
-            JSON += '"latitudeE7": ' + parseInt(throwayayArray[0]/SCALAR_E7) + ',';
+			JSON += '"latitudeE7": ' + parseInt(throwayayArray[0]/SCALAR_E7) + ',';
             JSON += '"longitudeE7": ' + parseInt(throwayayArray[1]/SCALAR_E7) + ',';
 
 			if (throwayayArray[4] != null){

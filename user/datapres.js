@@ -17,7 +17,6 @@ xmlhttp.onreadystatechange = function()
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
         document.getElementById("PresButton").remove();
         document.getElementById("placeholder").remove();
-        console.log("hey");
     response = JSON.parse(xmlhttp.responseText);
     data = response.data;
     labels = response.labels;

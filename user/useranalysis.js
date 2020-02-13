@@ -65,9 +65,9 @@ var cfg = {
 //   (there will always be a red spot with useLocalExtremas true)
 "useLocalExtrema": true,
 // which field name in your data represents the latitude - default "lat"
-latField: 'long',
+latField: 'latit',
 // which field name in your data represents the longitude - default "lng"
-lngField: 'latit',
+lngField: 'long',
 // which field name in your data represents the data value - default "value"
 valueField: 'count'
 };

@@ -9,6 +9,9 @@ if ($_SESSION["isAdmin"] == false){
 	<head>
 	<link rel="stylesheet" href="../css_files/user.css" type="text/css">
 	<link rel="stylesheet" href="./admin.css" type="text/css">
+	<script src="/user/leaflet.js"></script>
+	<script src="/user/heatmap.js"></script>
+	<script src="../../user/leaflet-heatmap.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	</head>
 	<body>
@@ -33,7 +36,7 @@ if ($_SESSION["isAdmin"] == false){
 		$("#container").fadeOut(0);
 		$("#container").load("./adminTabs/adminmap.html");
 		$("#container").fadeIn(1000);
-	});
+  	});
 	$("#deleteData").on("click", function(){
 		$("#container").fadeOut(0);
 		$("#container").load("./adminTabs/deleteData.html");

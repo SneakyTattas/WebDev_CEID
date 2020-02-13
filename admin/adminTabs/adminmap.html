@@ -1,18 +1,14 @@
 <html>
 <head>
-<link rel="stylesheet" href="./leaflet.css">
-<script src="./leaflet.js"></script>
+  <link rel="stylesheet" href="../../user/leaflet.css">
+  <script src="../../user/leaflet.js"></script>
+
 </head>
 <div class="container">
   <div style="text-align:center">
-	<form>
+	<form action="./adminTabs/adminmap2.php" method="GET" id = "form">
     Please choose time period (Default: All) <div id="mobile"><h1>         </h1></div>
-  <select
-    name="monthsince"
-    id="monthsince"
-    onchange="getForms()"
-    action="showDate(monthsince1,yearsince1,monthuntil1,yearuntil1)"
-  >
+  <select name="monthsince" id="monthsince">
     <option value="">Since (Month) </option>
     <option value="01">Ιανουάριος</option>
     <option value="02">Φεβρουάριος</option>
@@ -27,7 +23,7 @@
     <option value="11">Νοέμβριος</option>
     <option value="12">Δεκέμβριος</option>
   </select>
-  <select name="monthuntil" id="monthuntil" onchange="getForms()">
+  <select name="monthuntil" id="monthuntil">
     <option value="">Until (Month) </option>
     <option value="01">Ιανουάριος</option>
     <option value="02">Φεβρουάριος</option>
@@ -42,7 +38,7 @@
     <option value="11">Νοέμβριος</option>
     <option value="12">Δεκέμβριος</option>
   </select>
-  <select name="yearsince" id="yearsince" onchange="getForms()">
+  <select name="yearsince" id="yearsince">
     <option value="">Since (Year) </option>
     <option value="2015">2015</option>
     <option value="2016">2016</option>
@@ -56,7 +52,7 @@
     <option value="2024">2024</option>
     <option value="2025">2025</option>
   </select>
-    <select name="yearuntil" id="yearuntil" onchange="getForms()">
+    <select name="yearuntil" id="yearuntil" >
       <option value="">Until (Year) </option>
       <option value="2015">2015</option>
       <option value="2016">2016</option>
@@ -70,7 +66,7 @@
       <option value="2024">2024</option>
       <option value="2025">2025</option>
     </select>
-    <select name="daysince" id="daysince" onchange="getForms()">
+    <select name="daysince" id="daysince">
         <option value="">Since (Day) </option>
         <option value="01">Monday</option>
         <option value="02">Tuesday</option>
@@ -79,13 +75,8 @@
         <option value="05">Friday</option>
         <option value="06">Saturday</option>
         <option value="07">Sunday</option>
-        <option value="08">Αύγουστος</option>
-        <option value="09">Σεπτέμβριος</option>
-        <option value="10">Οκτώβριος</option>
-        <option value="11">Νοέμβριος</option>
-        <option value="12">Δεκέμβριος</option>
       </select>
-      <select name="dayuntil" id="dayuntil" onchange="getForms()">
+      <select name="dayuntil" id="dayuntil" >
         <option value="">Until (Day) </option>
         <option value="01">Monday</option>
         <option value="02">Tuesday</option>
@@ -94,13 +85,8 @@
         <option value="05">Friday</option>
         <option value="06">Saturday</option>
         <option value="07">Sunday</option>
-        <option value="08">Αύγουστος</option>
-        <option value="09">Σεπτέμβριος</option>
-        <option value="10">Οκτώβριος</option>
-        <option value="11">Νοέμβριος</option>
-        <option value="12">Δεκέμβριος</option>
       </select>
-      <select name="hoursince" id="hoursince" onchange="getForms()">
+      <select name="hoursince" id="hoursince" >
         <option value="">Since (Hour) </option>
         <option value="01">00:00</option>
         <option value="02">01:00</option>
@@ -127,7 +113,7 @@
         <option value="23">22:00</option>
         <option value="24">23:00</option>
       </select>
-      <select name="houruntil" id="houruntil" onchange="getForms()">
+      <select name="houruntil" id="houruntil">
       <option value="">Until (Hour) </option>
       <option value="01">00:00</option>
       <option value="02">01:00</option>
@@ -154,12 +140,87 @@
       <option value="23">22:00</option>
       <option value="24">23:00</option>
     </select>
+    <select name="types[]" id="types" multiple>
 
+
+    </select>
+    <script>
+
+    </script>
+
+<input type="submit" id="submittypes" > 
 </form>
 </div>
 </div>
-  <div id="map1"></div>
+  <div id="map1" height="700px"></div>
 </div>
-<script src="./adminanalysis.js"></script>
+<script src="./adminTabs/adminmap.js"></script>
+<script>
+      var baseLayer = L.tileLayer(
+    'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+        attribution: '...',
+        maxZoom: 16,
+        minZoom: 1
+    }
+    );
+      var map1 = new L.Map('map1', {
+    center: new L.LatLng(38.2466, 21.7345),
+    zoom: 4,
+    layers: [baseLayer]
+    });
+    var cfg = {
+ 
+        "radius": 5,
+      "maxOpacity": .8,
+      "scaleRadius": true,
+      "useLocalExtrema": true,
+      latField: 'latit',
+      lngField: 'long',
+      valueField: 'count'
+};
+
+var heatmapLayer = new HeatmapOverlay(cfg);
+map1.addLayer(heatmapLayer);
+
+  function formSubmit(event) {
+  var url = "/admin/adminTabs/adminmap2.php";
+  var request = new XMLHttpRequest();
+  var serialized = $('form').serialize();
+
+  newurl = url + "?" + serialized;
+  console.log(newurl);
+  request.open('GET', newurl, true);
+  request.onload = function() { // request successful
+  // we can use server response to our request now
+    var data1 = JSON.parse(request.responseText);
+    var data = data1.data;
+
+  
+      console.log(data1);
+      console.log(data)
+    var testData = {
+    max: data.length,
+    data: data1
+    
+    
+    
+    };
+    heatmapLayer.setData(testData);
+  };
+
+  request.onerror = function() {
+    // request failed
+  };
+
+  request.send(new FormData(event.target)); // create FormData from form that triggered event
+  event.preventDefault();
+  
+}
+function attachFormSubmitEvent(formId){
+  document.getElementById(formId).addEventListener("submit", formSubmit);
+}
+attachFormSubmitEvent("form");
+</script>
 </body>
 </html>
+
