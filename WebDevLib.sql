@@ -9,8 +9,10 @@ username VARCHAR(256) NOT NULL,
 passwd VARCHAR(256) NOT NULL,
 mail VARCHAR(256) NOT NULL,
 IsAdmin INT(2) NOT NULL,
-userID VARCHAR(256) NOT NULL PRIMARY KEY
+userID VARCHAR(256) NOT NULL PRIMARY KEY,
+EcoScore BIGINT(3),
+LastUpload BIGINT(10)
 )Engine=InnoDB;
 
-INSERT INTO users VALUES('akhs', 'akhs123', 'akhs@gmail.com', 0, '1234');
-INSERT INTO users VALUES('arhs', 'arhs123', 'aris@gmail.com', 1, '5678');
+INSERT INTO users VALUES('akis', 'ab2dd031d0d2445063ac6a1481f053af', 'mauksalah@yahoo.gr', 1, '9sFRJA7l3HPUjgRQiZAvxWVdVfnRCXpRcCwCSbqOmhc=');
+INSERT INTO users VALUES('arhs', '9594906fd6f4a0cd60a756239a5e69e2', 'ariskyr@gmail.com', 1, 'c5q/BoQAfuENkmZNjSpGL3TxAQUYzH/L8T8GlkKev/c=');

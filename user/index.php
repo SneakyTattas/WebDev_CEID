@@ -21,7 +21,7 @@
 <body>
     <div class="topnav">
       <div id="computer">
-      <a href="./index.html" id="HomePage" > <div id="mobile"></div> <img src="../Pictures/tree.ico"></img> </a>
+      <a href="./index.php" id="HomePage" > <div id="mobile"></div> <img src="../Pictures/tree.ico"></img> </a>
       <a class="tablinks" onclick="openAction(event, 'DataPresentation')" id="computerDP">Data Presentation</a>
       <a class="tablinks" onclick="openAction(event, 'Analysis')" id="computerAn">Analysis</a>
       <a class="tablinks" onclick="openAction(event, 'DataUpload')" id="computerDU">Data Upload</a>

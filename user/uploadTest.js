@@ -58,6 +58,7 @@
 
 	// For mobile browsers, allow direct file selection as well
 		$( '#file' ).change( function () {
+			document.getElementById("reset").disabled = false;
 			status("Clearing map...");
 			latlngs = [];
 			map.removeLayer(markers);
@@ -67,6 +68,7 @@
 		} );
 		
 		function stageTwo (file) {
+			
 
 			var os = new oboe();
 
@@ -76,11 +78,6 @@
 				timestamp = location.timestampMs,
 				acc = location.accuracy,
 				activity = location.activity;
-				var maxvalue = 0;
-				var bestactivity = "";
-				var bestconfidence = 0;
-
-
 
 			// Handle negative latlngs due to google unsigned/signed integer bug.
 			if ( latitude > 180 ) latitude = latitude - (2 ** 32) * SCALAR_E7;
@@ -89,25 +86,32 @@
 			var circle = 0.011438148719;
 							if (distancesquared < circle){
 								if (activity != undefined){
-
+									var bestactivity = "";
+									var bestconfidence = 0;
+									var maxvalue = 0;
 									for (i in activity) {
 											if(activity[i].activity[0].confidence > 50 && activity[i].activity[0].confidence > maxvalue && activity[i].activity[0].type != "TILTING") {
 												maxvalue = activity[i].activity[0].confidence;
-												bestconfidence = activity[i].activity[0].confidence;
 												bestactivity = activity[i].activity[0].type;
-												
-											}else  {
 												bestconfidence = activity[i].activity[0].confidence;
-												bestactivity = "UNKNOWN";
-											}
-											
+		
+											}else { 
+												if (bestactivity  == "UNKNOWN"){
+												bestconfidence = activity[i].activity[0].confidence;
+												}
+												else if (bestactivity == "")
+												{
+													bestactivity = "UNKNOWN";
+													bestconfidence = activity[i].activity[0].confidence;
+												}
+	
+											}	
 									}
-									maxvalue =0;
+									
 									latlngs.push([latitude,longitude,timestamp,acc,bestactivity,bestconfidence]);
 
 									}
-
-									
+	
 								else 
 								{
 									latlngs.push([latitude,longitude,timestamp,acc]);
@@ -141,6 +145,7 @@
 	
 
 	function stageThree ( numberProcessed ) {
+		document.getElementById("reset").disabled = false;
 	var $done = $( '#done' );
 	markers.on("clusterclick", function(event) {
   var cluster = event.layer,
@@ -243,8 +248,17 @@
 				xhr3.send(locationhistory);
 				xhr3.onreadystatechange = function()
 					{
-					if (xhr3.readyState == 4 && xhr3.status == 200){ status("File uploaded! Please refresh page for data presentation"); }
-					}
+						if (xhr3.readyState == 4 && xhr3.status == 200)
+								{
+								const xhr4 = new XMLHttpRequest();
+								xhr4.open("POST", "percent.php");
+								xhr4.send();
+								xhr4.onreadystatechange = function()
+							{
+							if (xhr4.readyState == 4 && xhr4.status == 200)
+								{
+							 status("File uploaded! Please refresh page for data presentation"); }
+					}}
 				}
 		}
-});
+}});

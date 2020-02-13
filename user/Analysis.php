@@ -33,8 +33,6 @@ if(!$yearuntil)
 $timestamp = strtotime("$yearsince/$monthsince/01");
 $timestamp2 = strtotime("$yearuntil/$monthuntil/31");
 
-$sql="SELECT timestamp, longitudeE7, latitudeE7, accuracy, type FROM locations WHERE username = '$username' AND timestamp BETWEEN ($timestamp*1000) AND ($timestamp2*1000) ORDER BY timestamp ";
-$result = $mysql_con->query($sql);
 $queryA = "SELECT type,count(*) as counter FROM locations WHERE username = '$username' AND timestamp BETWEEN ($timestamp*1000) AND ($timestamp2*1000) GROUP BY type";
 $queryB = "SELECT PeakHour, type, amount FROM (SELECT count(*) as amount,HOUR(FROM_UNIXTIME(timestamp/1000)) AS PeakHour,type FROM locations WHERE username = '$username' AND timestamp BETWEEN ($timestamp*1000) AND ($timestamp2*1000) group by PeakHour, type order by count(*) desc, type) as x group by type";
 $queryC = "SELECT PeakDay, type, amount FROM (SELECT count(*) as amount,DAYNAME(FROM_UNIXTIME(timestamp/1000)) AS PeakDay,type FROM locations WHERE username = '$username' AND timestamp BETWEEN ($timestamp*1000) AND ($timestamp2*1000) group by PeakDay, type order by count(*) desc, type) as x group by type";

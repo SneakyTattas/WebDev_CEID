@@ -7,34 +7,31 @@ if ($_SESSION["isAdmin"] == false){
 ?>
 <html>
 	<head>
-	<link rel="stylesheet" href="./footer.css" type="text/css">
-	<link rel="stylesheet" href="./login.css" type="text/css">
-	<link rel="stylesheet" href="./grid.css" type="text/css">
+	<link rel="stylesheet" href="../css_files/user.css" type="text/css">
+	<link rel="stylesheet" href="./admin.css" type="text/css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	</head>
 	<body>
 	<div class="topnav" id="topnav">
-		<a href="#dbstate" id ="dbstate"> Απεικόνηση κατάστασης βάσης </a>
-		<a href="#map" id ="map"> Απεικόνηση στοιχείων σε χάρτη</a>
-		<a href="#deleteData" id="deleteData"> Διαγραφή δεδομένων </a>
-		<a href="#exportData" id="exportData"> Εξαγωγή δεδομένων </a>
-		<a href="./logout.php" class="dc" id="dc"> Αποσύνδεση </a>
+		<a href="#dbstate" id ="dbstate" class="tablinks"> Απεικόνηση κατάστασης βάσης </a>
+		<a href="#map" id ="map"class="tablinks"> Απεικόνηση στοιχείων σε χάρτη</a>
+		<a href="#deleteData" id="deleteData"class="tablinks"> Διαγραφή δεδομένων </a>
+		<a href="#exportData" id="exportData"class="tablinks"> Εξαγωγή δεδομένων </a>
+		<a href="./logout.php"class="tablinks" style="float:right"> Αποσύνδεση </a>
 		</div>
-		<div class="container" id="container"></div>
-		
-	<div class="footer" id="adminfooter">
-	<a href="../about/"><p> About</p> </a>
-	</div>
+		<div class="container" id="container">
+<script> $("#container").load("./adminTabs/dbstate.html"); </script>
+		</div>
 	<script>
 	$("#dbstate").on("click", function(){
-		$("#tabcontent").fadeOut(0);
-		$("#tabcontent").load("./adminTabs/dbstate.html");
-		$("#tabcontent").fadeIn(1000);
+		$("#container").fadeOut(0);
+		$("#container").load("./adminTabs/dbstate.html");
+		$("#container").fadeIn(1000);
 
 	});
 	$("#map").on("click", function(){
-		$("#tabcontent").fadeOut(0);
-		$("#tabcontent").load("./adminTabs/map.html");
+		$("#container").fadeOut(0);
+		$("#container").load("./adminTabs/adminmap.html");
 		$("#container").fadeIn(1000);
 	});
 	$("#deleteData").on("click", function(){
