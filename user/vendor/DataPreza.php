@@ -62,7 +62,11 @@ for ($j = 0; $j<12; $j++){
 $queryLeaderboard = "SELECT @rownum := @rownum + 1 AS rank, username, EcoScore FROM users, (SELECT @rownum := 0) r order by EcoScore desc LIMIT 3";
 
 $resultLeaderboard = mysqli_fetch_all($mysql_con->query($queryLeaderboard));
+<<<<<<< HEAD:user/vendor/DataPreza.php
 $LeaderboardRows = mysqli_num_rows($mysql_con->query($queryLeaderboard));
+=======
+$LeaderboardRows = mysqli_num_rows($resultLeaderboard);
+>>>>>>> 7348fd6f5f0f4c74204abd078d292b0aba3da4bf:user/vendor/DataPreza.php
 for($k = 0; $k<$LeaderboardRows; $k++){
     $jsonObject .= '{"rank":' . $resultLeaderboard[$k][0] .",";
     $jsonObject .= '"username":"' . $resultLeaderboard[$k][1] .'",';

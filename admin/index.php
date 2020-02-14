@@ -13,6 +13,7 @@ if ($_SESSION["isAdmin"] == false){
         <title>Eco-friendly CEIDades</title> 
 		<link rel="stylesheet" href="../css_files/user.css" type="text/css">
 		<link rel="stylesheet" href="../css_files/admin.css" type="text/css">
+<<<<<<< HEAD
 		<link rel="stylesheet" href="../lib/leaflet.css" type="text/css">
 		<link rel="shortcut icon" href="../Pictures/tree.ico">
         <script src="../lib/jquery.min.js"></script>
@@ -20,6 +21,14 @@ if ($_SESSION["isAdmin"] == false){
         <script src="../lib/leaflet.js" ></script>
         <script src="../lib/heatmap.js" ></script>
         <script src="../lib/leaflet-heatmap.js"></script>
+=======
+		<link rel="shortcut icon" href="../Pictures/tree.ico">
+        <script src="../lib/jquery.min.js"></script>
+        <script src="../lib/Chart.js" defer></script>
+        <script src="../lib/leaflet.js" defer></script>
+        <script src="../lib/heatmap.js" defer></script>
+        <script src="../lib/leaflet-heatmap.js" defer></script>
+>>>>>>> 7348fd6f5f0f4c74204abd078d292b0aba3da4bf
 	</head>
 	<body>
 	<div class="topnav" id="topnav">
@@ -30,7 +39,11 @@ if ($_SESSION["isAdmin"] == false){
 		<a href="../php_files/logout.php"class="tablinks" style="float:right">Logout </a>
 		</div>
 		<div class="container" id="container">
+<<<<<<< HEAD
 		<script> $("#container").load("./adminTabs/dbstateI.php"); </script>
+=======
+		<script> $("#container").load("./adminTabs/dbstate.html"); </script>
+>>>>>>> 7348fd6f5f0f4c74204abd078d292b0aba3da4bf
 		</div>
 	<script>
 	$("#dbstate").on("click", function(){

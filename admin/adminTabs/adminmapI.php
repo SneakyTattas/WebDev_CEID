@@ -6,6 +6,10 @@ if ($_SESSION["isAdmin"] == false){
 ?>
 <html>
 <head>
+<<<<<<< HEAD:admin/adminTabs/adminmapI.php
+=======
+
+>>>>>>> 7348fd6f5f0f4c74204abd078d292b0aba3da4bf:admin/adminTabs/adminmap.html
 </head>
 <div class="container">
   <div style="text-align:center">
@@ -43,7 +47,11 @@ if ($_SESSION["isAdmin"] == false){
   </select>
   <select name="yearsince" id="yearsince">
     <option value="">Since (Year) </option>
+<<<<<<< HEAD:admin/adminTabs/adminmapI.php
     <option value="2015">2015</option>
+=======
+    <option value="2015">2010</option>
+>>>>>>> 7348fd6f5f0f4c74204abd078d292b0aba3da4bf:admin/adminTabs/adminmap.html
     <option value="2016">2016</option>
     <option value="2017">2017</option>
     <option value="2018">2018</option>
@@ -157,8 +165,8 @@ if ($_SESSION["isAdmin"] == false){
 </div>
   <div id="map1" style="height:700px; width:100%"></div>
 </div>
-<script src="./adminTabs/getlocationtypes.js"></script>
-<script src="./adminTabs/adminmap.js"></script>
+<script src="./adminTabs/getlocationtypes.js" defer></script>
+<script src="./adminTabs/adminmap.js" defer></script>
 </body>
 </html>
 

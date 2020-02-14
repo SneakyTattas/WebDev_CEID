@@ -1,6 +1,10 @@
 <?php
 require("../../php_files/DBhandler.php");
+<<<<<<< HEAD:user/vendor/testphp.php
 require_once('./autoload.php');
+=======
+require_once 'vendor/autoload.php';
+>>>>>>> 7348fd6f5f0f4c74204abd078d292b0aba3da4bf:user/vendor/testphp.php
 session_start();
 use Brick\Db\Bulk\BulkInserter;
 $username = "root";
