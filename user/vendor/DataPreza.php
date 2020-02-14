@@ -1,5 +1,5 @@
 <?php
-require("../login/DBhandler.php");
+require("../../php_files/DBhandler.php");
 session_start();
 $userid = $_SESSION["username"];
 $k = 0;
@@ -61,7 +61,8 @@ for ($j = 0; $j<12; $j++){
 //gia tous 3
 $queryLeaderboard = "SELECT @rownum := @rownum + 1 AS rank, username, EcoScore FROM users, (SELECT @rownum := 0) r order by EcoScore desc LIMIT 3";
 $resultLeaderboard = mysqli_fetch_all($mysql_con->query($queryLeaderboard));
-for($k = 0; $k<3; $k++){
+$LeaderboardRows = mysqli_num_rows($resultLeaderboard);
+for($k = 0; $k<$LeaderboardRows; $k++){
     $jsonObject .= '{"rank":' . $resultLeaderboard[$k][0] .",";
     $jsonObject .= '"username":"' . $resultLeaderboard[$k][1] .'",';
     if ($k < 2){
@@ -72,6 +73,7 @@ for($k = 0; $k<3; $k++){
     }
 
 }
+
 //gia ton filo mas rank, onoma, ecoscore, last upload
 $queryfilos = 'SELECT rank, EcoScore, LastUpload from (SELECT @rownum := @rownum + 1 AS rank, username, LastUpload, EcoScore FROM users, (SELECT @rownum := 0) r order by EcoScore desc) as x WHERE username = "'.$userid.'"';
 $resultfilos = mysqli_fetch_all($mysql_con->query($queryfilos));

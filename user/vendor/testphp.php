@@ -1,5 +1,5 @@
 <?php
-require("../login/DBhandler.php");
+require("../../php_files/DBhandler.php");
 require_once 'vendor/autoload.php';
 session_start();
 use Brick\Db\Bulk\BulkInserter;

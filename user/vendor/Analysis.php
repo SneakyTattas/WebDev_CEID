@@ -5,7 +5,7 @@ session_start();
 $username = $_SESSION["username"];
 $timestamp = 0;
 $timestamp2 = 0;
-require("../login/DBhandler.php");
+require("../../php_files/DBhandler.php");
 $monthsince = intval($_GET['monthsince']);
 $yearsince = intval($_GET['yearsince']);
 $monthuntil = intval($_GET['monthuntil']);

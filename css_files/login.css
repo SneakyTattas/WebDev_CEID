@@ -120,6 +120,10 @@ body {
   .topnav input[type=text] {
     border: 1px solid #ccc;
   }
+  #psw{
+    width: -webkit-fill-availiable;
+    height: 49px;
+  }
 }
 
 

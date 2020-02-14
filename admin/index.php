@@ -11,13 +11,14 @@ if ($_SESSION["isAdmin"] == false){
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Eco-friendly CEIDades</title> 
-	<link rel="stylesheet" href="../css_files/user.css" type="text/css">
-	<link rel="stylesheet" href="../css_files/admin.css" type="text/css">
-	<link rel="shortcut icon" href="../Pictures/tree.ico">
-	<script src="/user/leaflet.js"></script>
-	<script src="/user/heatmap.js"></script>
-	<script src="../../user/leaflet-heatmap.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="../css_files/user.css" type="text/css">
+		<link rel="stylesheet" href="../css_files/admin.css" type="text/css">
+		<link rel="shortcut icon" href="../Pictures/tree.ico">
+        <script src="../lib/jquery.min.js"></script>
+        <script src="../lib/Chart.js" defer></script>
+        <script src="../lib/leaflet.js" defer></script>
+        <script src="../lib/heatmap.js" defer></script>
+        <script src="../lib/leaflet-heatmap.js" defer></script>
 	</head>
 	<body>
 	<div class="topnav" id="topnav">
@@ -28,7 +29,7 @@ if ($_SESSION["isAdmin"] == false){
 		<a href="../php_files/logout.php"class="tablinks" style="float:right"> Αποσύνδεση </a>
 		</div>
 		<div class="container" id="container">
-<script> $("#container").load("./adminTabs/dbstate.html"); </script>
+		<script> $("#container").load("./adminTabs/dbstate.html"); </script>
 		</div>
 	<script>
 	$("#dbstate").on("click", function(){

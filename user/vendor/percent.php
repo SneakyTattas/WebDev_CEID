@@ -1,5 +1,5 @@
 <?php
-require("../login/DBhandler.php");
+require("../../php_files/DBhandler.php");
 session_start();
 $userid = $_SESSION["username"];
 //scor oikologikhs metakinhshs
