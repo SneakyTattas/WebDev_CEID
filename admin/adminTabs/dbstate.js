@@ -20,7 +20,6 @@ function state(){
                 var labelx = "response.label" + (i+1);
                 var datax = "response.data" + (i+1);
                 var table = ["activity", "username", "month", "weekday", "hour","year"];
-                console.log(chartx, labelx, datax);
             Chart.defaults.global.defaultFontColor = '#c7c7c7';
             new Chart(document.getElementById(chartx),
             {type:"pie",

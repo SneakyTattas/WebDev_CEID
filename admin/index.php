@@ -7,8 +7,13 @@ if ($_SESSION["isAdmin"] == false){
 ?>
 <html>
 	<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Eco-friendly CEIDades</title> 
 	<link rel="stylesheet" href="../css_files/user.css" type="text/css">
-	<link rel="stylesheet" href="./admin.css" type="text/css">
+	<link rel="stylesheet" href="../css_files/admin.css" type="text/css">
+	<link rel="shortcut icon" href="../Pictures/tree.ico">
 	<script src="/user/leaflet.js"></script>
 	<script src="/user/heatmap.js"></script>
 	<script src="../../user/leaflet-heatmap.js"></script>
@@ -20,7 +25,7 @@ if ($_SESSION["isAdmin"] == false){
 		<a href="#map" id ="map"class="tablinks"> Απεικόνηση στοιχείων σε χάρτη</a>
 		<a href="#deleteData" id="deleteData"class="tablinks"> Διαγραφή δεδομένων </a>
 		<a href="#exportData" id="exportData"class="tablinks"> Εξαγωγή δεδομένων </a>
-		<a href="./logout.php"class="tablinks" style="float:right"> Αποσύνδεση </a>
+		<a href="../php_files/logout.php"class="tablinks" style="float:right"> Αποσύνδεση </a>
 		</div>
 		<div class="container" id="container">
 <script> $("#container").load("./adminTabs/dbstate.html"); </script>

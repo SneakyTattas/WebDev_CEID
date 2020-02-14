@@ -1,5 +1,5 @@
 <?php
-require("DBhandler.php");
+require_once("../DBhandler.php");
 $currentuser = $_POST["username"];
 $currentpass = $_POST["password"];
 $currentmail = $_POST["email"];
@@ -20,6 +20,7 @@ if (in_array($cipher, openssl_get_cipher_methods()))
     $original_plaintext = openssl_decrypt($ciphertext, $cipher, $key, $options=0, $iv);
 }
 
+//insert user into the database
 $query = "INSERT INTO users VALUES ('$currentuser', '$hashedpass', '$currentmail', 0, '$ciphertext', 0, 0)";
 $result = $mysql_con->query($query);
 echo $mysql_con->error;
@@ -29,5 +30,5 @@ session_start();
 $_SESSION["username"] = $currentuser;
 $_SESSION["password"] = $hashedpass;
 $_SESSION["isAdmin"] = 0;
-header('Location: http://' . $_SERVER['HTTP_HOST'] . '/../user/');
+header('Location: http://' . $_SERVER['HTTP_HOST'] . '/user/');
 ?>

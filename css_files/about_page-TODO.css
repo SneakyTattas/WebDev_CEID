@@ -1,6 +1,6 @@
 /* TODO CSS FOR ABOUT PAGE*/
 body {
-    background: #FFFFFF url('../Pictures/Kappa.jpg') no-repeat;
+    background: #FFFFFF url('/Pictures/Kappa.jpg') no-repeat;
     background-position: center;
     background-size: contain;
 }

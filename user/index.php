@@ -1,4 +1,4 @@
-<?php require_once('./sessionValidate.php'); ?>
+<?php require_once('../php_files/sessionValidate.php'); ?>
 <!DOCTYPE html>
 <html>
 <head>
