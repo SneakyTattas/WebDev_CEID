@@ -11,7 +11,7 @@ $KMLfile = fopen("KMLfile(".$filename.").kml", "wr+") or die("Unable to open kml
 fwrite($JSONfile, '{"locations":[');
 fwrite($CSVfile, '"Timestamp", "longitudeE7", "latitudeE7", "accuracy", "activity", "userID"'.PHP_EOL);
 fwrite($KMLfile, '<?xml version="1.0" encoding="UTF-8"?><kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2"><Document><Placemark><open>1</open><gx:Track><altitudeMode>clampToGround</altitudeMode>');
-$queryjson = "select timestamp, latitudeE7 , longitudeE7 , accuracy, type, userID from locations INNER JOIN users ON users.username = locations.username";
+$queryjson = "select timestamp, latitudeE7 , longitudeE7 , accuracy, type, users.userID from locations INNER JOIN users ON users.username = locations.username";
 $queryKML = 'select longitudeE7, latitudeE7, DATE_FORMAT(from_unixtime(timestamp/1000), "%Y-%m-%dT%H:%i:%sZ") AS date_formatted, users.userID	FROM locations INNER JOIN users where locations.username = users.username';
 $resultjson = $mysql_con->query($queryjson);
 $resultKML = $mysql_con->query($queryKML);

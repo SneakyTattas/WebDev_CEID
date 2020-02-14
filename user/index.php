@@ -6,16 +6,21 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
             <title>Eco-friendly CEIDades</title> 
+        <script src="../lib/jquery.min.js"></script>
+        <script src="../lib/oboe-browser.min.js" defer></script>
+        <script src="../lib/prettysize.js" defer></script>
+        <script src="../lib/Chart.js" defer></script>
+        <script src="../lib/leaflet.js" defer></script>
+        <script src="../lib/heatmap.js" defer></script>
+        <script src="../lib/leaflet-heatmap.js" defer></script>
+        <script src="../lib/leaflet.markercluster.js" defer></script>
         <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300">
+        <link rel="stylesheet" href="../lib/Chart.css">
         <link rel="stylesheet" href="../css_files/user.css">
         <link rel="shortcut icon" href="../Pictures/tree.ico">
-        <link rel="stylesheet" href="./leaflet.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="./lib/prettysize.js"></script>
-        <script src="./leaflet.js"></script>
-        <script src="./lib/oboe-browser.min.js"></script>
-        <script src="./heatmap.js"></script>
-        <script src="./leaflet-heatmap.js"></script>
+        <link rel="stylesheet" href="../lib/leaflet.css">
+        <link rel="stylesheet" href="../lib/MarkerCluster.default.css">
+        <link rel="stylesheet" href="../lib/MarkerCluster.css">
 </head>
 
 <body>
@@ -41,12 +46,12 @@
     </div>
     <div id="DataPresentation" class="tabcontent">
 	    <script>
-		  $("#DataPresentation").load("DataPresentation.html");
+		  $("#DataPresentation").load("./html/DataPresentation.html");
 		  </script>
     </div>
     <div id="Analysis" class="tabcontent">
         <script>
-        $("#Analysis").load("userAnalysis.html");
+        $("#Analysis").load("./html/userAnalysis.html");
         $("#Analysis").on("click", function(){
         map1.invalidateSize();
         map.invalidateSize();
@@ -55,14 +60,14 @@
     </div>
     <div id="DataUpload" class="tabcontent">
 		  <script>
-			$("#DataUpload").load("./UploadMap.html");
+			$("#DataUpload").load("./html/UploadMap.html");
 			$("#DataUpload").on("click", function(){
         map.invalidateSize();
 				});
 		  </script>
     </div>
 
-      <script src="./tab_switch.js"></script>
+      <script src="../lib/tab_switch.js"></script>
 		  <script>
       document.getElementById("computerDP").click();
       </script>

@@ -1,0 +1,5 @@
+#untrack presentation folder
+PresentationPDFs/*
+
+#untrack exportedDB
+ExportedDB.sql

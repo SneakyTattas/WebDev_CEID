@@ -13,7 +13,7 @@ $drop = 'DROP DATABASE IF EXISTS WebDev_CEID;'
 .'mail VARCHAR(256) NOT NULL,'
 .'IsAdmin INT(2) NOT NULL,'
 .'userID VARCHAR(256) NOT NULL PRIMARY KEY,'
-.'EcoScore BIGINT(3),'
+.'EcoScore BIGINT(3) DEFAULT 0,'
 .'LastUpload BIGINT(10)'
 .')Engine=InnoDB;'
 
